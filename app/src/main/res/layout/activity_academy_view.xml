@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="2"
+        android:id="@+id/aca_image"
+        android:src="@drawable/aca_test"/>
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:stretchColumns="1,3">
+        <TableRow>
+            <TextView android:text="분류"/>
+            <TextView
+                android:id="@+id/category"
+                android:layout_span="3"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="학원명"/>
+            <TextView android:id="@+id/aca_name"/>
+            <TextView android:text="평점"/>
+            <TextView android:id="@+id/score"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="주소"/>
+            <TextView
+                android:id="@+id/address"
+                android:layout_span="3"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
