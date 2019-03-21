@@ -1,11 +1,16 @@
 package com.kosmo.studycastle;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 public class Intro extends AppCompatActivity {
+
+    ImageView img;
 
     /*
     메니페스트 파일을 수정하여 MainActivity보다 Intro를 먼저
@@ -30,11 +35,11 @@ public class Intro extends AppCompatActivity {
             finish();
         }
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+
     }
 
     /*

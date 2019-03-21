@@ -2,12 +2,15 @@ package com.kosmo.studycastle;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +22,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class AcademyList extends AppCompatActivity {
 
@@ -33,7 +38,18 @@ public class AcademyList extends AppCompatActivity {
     ListView acaList;
     ProgressDialog dialog;//대기시 프로그레스창
 
-    TextView textResult;
+    //결과를 답을 배열 생성
+    ArrayList<String> aca_name = new ArrayList<String>();
+    ArrayList<String> address = new ArrayList<String>();
+    ArrayList<String> detail_address = new ArrayList<String>();
+    ArrayList<String> category = new ArrayList<String>();
+    ArrayList<String> score = new ArrayList<String>();
+    ArrayList<String> image = new ArrayList<String>();
+    ArrayList<Bitmap> imagebit = new ArrayList<Bitmap>();
+
+    //이미지 처리진행할 bitmap변수
+    Bitmap bitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +57,7 @@ public class AcademyList extends AppCompatActivity {
         setContentView(R.layout.activity_academy_list);
 
         //위젯 얻어오기
-        textResult = (TextView)findViewById(R.id.result);
+
         searchColumn = (Spinner)findViewById(R.id.search_column);
         searchContents = (EditText)findViewById(R.id.search_contents);
         searchButton = (Button)findViewById(R.id.search_button);
@@ -64,7 +80,7 @@ public class AcademyList extends AppCompatActivity {
         dialog.setTitle("학원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        new AsyncHttpRequest().execute("http://192.168.0.18:8080/FinallyProject/AppAcaList.jsp"
+        new AsyncHttpRequest().execute("http://192.168.0.18:8080/FinallyProject/catle/AppAcaList.do"
                 ,"search_column="+search_column
                 ,"search_contents="+search_contents
                 ,"button_name="+button_name
@@ -98,7 +114,7 @@ public class AcademyList extends AppCompatActivity {
                 //위 참조변수로 URL(웹주소)연결
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 //전송방식은 POST로 설정한다.(디폴트는 GET 방식)
-                connection.setRequestMethod("POST");
+                connection.setRequestMethod("GET");
                 //OutputStream으로 파라미터를 전달하겠다는 설정
                 connection.setDoOutput(true);
 
@@ -140,20 +156,63 @@ public class AcademyList extends AppCompatActivity {
             }
 
 
+            //JSONArray파싱하기
             try{
                 Log.i("KOSMO",sBuffer.toString());
-                //JSONArray파싱하기
+
                 JSONArray jsonArray = new JSONArray(sBuffer.toString());
 
                 sBuffer.setLength(0);//sBuffer초기화
                 for(int i=0 ; i<jsonArray.length() ; i++){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                    sBuffer.append("아이디 : "+jsonObject.getString("id"));
-                    sBuffer.append(",패스워드 : "+jsonObject.getString("pass"));
-                    sBuffer.append(",이름 : "+jsonObject.getString("name"));
-                    sBuffer.append(",가입날짜 : "+jsonObject.getString("regidate"));
+                    aca_name.add(jsonObject.getString("acaName"));
+                    address.add(jsonObject.getString("address"));
+                    detail_address.add(jsonObject.getString("detailAddress"));
+                    category.add(jsonObject.getString("category"));
+                    image.add(jsonObject.getString("acaIntroPhoto"));
+                    score.add(jsonObject.getString("score"));
+
+                    sBuffer.append("학원명 : "+jsonObject.getString("acaName"));
+                    sBuffer.append(",주소 : "+jsonObject.getString("address"));
+                    sBuffer.append(",상세주소 : "+jsonObject.getString("detailAddress"));
+                    sBuffer.append(",카테고리 : "+jsonObject.getString("category"));
+                    sBuffer.append(",학원사진 : "+jsonObject.getString("acaIntroPhoto"));
+                    sBuffer.append(",평점 : "+jsonObject.getString("score"));
                     sBuffer.append("\r\n");
+
+                    Thread mthread = new Thread(){
+                        @Override
+                        public void run() {
+                            try{
+                                URL url = new URL("http://blogfiles.naver.net/20141219_45/weppy22_1418971309581t1gPa_JPEG/%B9%CC%C5%B0%B8%B6%BF%EC%BD%BA5.jpg");
+
+                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                conn.setDoInput(true);
+                                conn.connect();
+
+                                InputStream is = conn.getInputStream();
+                                bitmap = BitmapFactory.decodeStream(is);
+                            }
+                            catch(Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    };
+
+                    mthread.start();
+
+                    try{
+                        mthread.join();
+
+                        imagebit.add(bitmap);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+
                 }
             }
             catch (Exception e){
@@ -161,18 +220,28 @@ public class AcademyList extends AppCompatActivity {
             }
 
 
-            return null;
+            return sBuffer.toString();
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
             //진행대화창 닫기
             dialog.dismiss();
 
-            //서버의 응답데이터 파싱후 텍스트뷰에 출력
-            textResult.setText(s);
+            //커스텀 뷰
+            MyAdapter adapter = new MyAdapter();
+            acaList = (ListView)findViewById(R.id.aca_list);
+            acaList.setAdapter(adapter);
+
+            //배열 선택시 상세페이지로 이동
+            acaList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //이동할 곳의 인텐트 작업중
+                    Intent intent = new Intent(view.getContext(),AcademyDetailView.class);
+                }
+            });
         }
     }
 
@@ -180,12 +249,12 @@ public class AcademyList extends AppCompatActivity {
     class MyAdapter extends BaseAdapter{
         @Override
         public int getCount() {
-            return 0;
+            return aca_name.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return aca_name.get(position) ;
         }
 
         @Override
@@ -195,12 +264,13 @@ public class AcademyList extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            /*AcademyView view = new AcademyView(getApplicationContext());
-            view.setAddress();
-            view.setCategory();
-            view.setScore();
-            view.setImage();*/
-            return /*view*/  null;
+            AcademyView view = new AcademyView(getApplicationContext());
+            view.setAddress(address.get(position)+detail_address.get(position));
+            view.setCategory(category.get(position));
+            view.setName(aca_name.get(position));
+            view.setScore(score.get(position));
+            view.setImage(imagebit.get(position));
+            return view;
         }
     }
 }

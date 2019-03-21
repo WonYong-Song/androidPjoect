@@ -27,10 +27,14 @@ public class AcademyView extends LinearLayout {
         category = (TextView)findViewById(R.id.category);
         score = (TextView)findViewById(R.id.score);
         address = (TextView)findViewById(R.id.address);
+        aca_name = (TextView)findViewById(R.id.aca_name);
     }
 
     //카테고리를 텍스트뷰에 설정
     public void setCategory(String category){this.category.setText(category);}
+
+    //이름을 텍스트뷰에 설정
+    public void setName(String name){aca_name.setText(name);}
 
     //평점을 텍스트뷰에 설정
     public void setScore(String score){this.score.setText(score);}
