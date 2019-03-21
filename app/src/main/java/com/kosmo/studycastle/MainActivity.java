@@ -13,9 +13,7 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity {
 
     //전역변수
-    Spinner search_column;
-    EditText search_contents;
-    Button all,entrance_examination,physical_education,etc,search_button;
+    Button all,entrance_examination,physical_education,etc;
     Intent intent;
 
     @Override
@@ -23,25 +21,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //스피너 부착
-        final Spinner searchSpinner = (Spinner)findViewById(R.id.search_column);
-        ArrayAdapter searchAdapter = ArrayAdapter.createFromResource(this,R.array.search_column,android.R.layout.simple_spinner_dropdown_item);
-        searchSpinner.setAdapter(searchAdapter);
-
         all=(Button)findViewById(R.id.all);
         entrance_examination=(Button)findViewById(R.id.entrance_examination);
         physical_education=(Button)findViewById(R.id.physical_education);
         etc=(Button)findViewById(R.id.etc);
-        search_contents=(EditText)findViewById(R.id.search_contents);
-        search_button = (Button)findViewById(R.id.search_button);
 
         //전체선택시
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(v.getContext(),AcademyList.class);
-                intent.putExtra("search_column",searchSpinner.getSelectedItem().toString());
-                intent.putExtra("search_contents",search_contents.getText().toString());
                 intent.putExtra("button_name",all.getText().toString());
 
                 startActivity(intent);
@@ -53,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent = new Intent(v.getContext(),AcademyList.class);
-                intent.putExtra("search_column",searchSpinner.getSelectedItem().toString());
-                intent.putExtra("search_contents",search_contents.getText().toString());
                 intent.putExtra("button_name",entrance_examination.getText().toString());
 
                 startActivity(intent);
@@ -65,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent = new Intent(v.getContext(),AcademyList.class);
-                intent.putExtra("search_column",searchSpinner.getSelectedItem().toString());
-                intent.putExtra("search_contents",search_contents.getText().toString());
                 intent.putExtra("button_name",physical_education.getText().toString());
 
                 startActivity(intent);
@@ -77,25 +62,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent = new Intent(v.getContext(),AcademyList.class);
-                intent.putExtra("search_column",searchSpinner.getSelectedItem().toString());
-                intent.putExtra("search_contents",search_contents.getText().toString());
                 intent.putExtra("button_name",etc.getText().toString());
 
                 startActivity(intent);
             }
         });
 
-        //검색버튼 선택시
-        search_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(v.getContext(),AcademyList.class);
-                intent.putExtra("search_column",searchSpinner.getSelectedItem().toString());
-                intent.putExtra("search_contents",search_contents.getText().toString());
-                intent.putExtra("button_name",search_button.getText().toString());
-
-                startActivity(intent);
-            }
-        });
     }
 }

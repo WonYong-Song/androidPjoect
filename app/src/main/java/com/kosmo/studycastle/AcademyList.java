@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,10 @@ public class AcademyList extends AppCompatActivity {
     ListView acaList;
     ProgressDialog dialog;//대기시 프로그레스창
 
+    //전역변수 인텐트
+
     //결과를 답을 배열 생성
+    ArrayList<String> idx = new ArrayList<String>();
     ArrayList<String> aca_name = new ArrayList<String>();
     ArrayList<String> address = new ArrayList<String>();
     ArrayList<String> detail_address = new ArrayList<String>();
@@ -56,22 +60,25 @@ public class AcademyList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academy_list);
 
-        //위젯 얻어오기
+        //스피너 부착
+        final Spinner searchSpinner = (Spinner)findViewById(R.id.search_column);
+        ArrayAdapter searchAdapter = ArrayAdapter.createFromResource(this,R.array.search_column,android.R.layout.simple_spinner_dropdown_item);
+        searchSpinner.setAdapter(searchAdapter);
 
+        //위젯 얻어오기
         searchColumn = (Spinner)findViewById(R.id.search_column);
         searchContents = (EditText)findViewById(R.id.search_contents);
         searchButton = (Button)findViewById(R.id.search_button);
-
-
 
         //메인 액티비티에서 전달한 부가데이터 읽어오기
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        String search_column = bundle.getString("search_column");
-        String search_contents = bundle.getString("search_contents");
-        String button_name = bundle.getString("button_name");
-
+        String search_column = (bundle.getString("search_column"))==null ? "" : bundle.getString("search_column");
+        String search_contents = (bundle.getString("search_contents"))==null ? "" : bundle.getString("search_contents");
+        final String button_name = (bundle.getString("button_name"))==null ? "" : bundle.getString("button_name");
+        //인텐트를 넘어온 값을 확인하기
+        Log.i("getIntent","search_column : "+search_column+", search_contents : "+search_contents+", button_name : "+button_name);
 
         //ProgressDialog객체생성(서버 응답 대기용)
         dialog = new ProgressDialog(this);
@@ -80,11 +87,23 @@ public class AcademyList extends AppCompatActivity {
         dialog.setTitle("학원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        new AsyncHttpRequest().execute("http://192.168.0.18:8080/FinallyProject/catle/AppAcaList.do"
+        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaList.do"
                 ,"search_column="+search_column
                 ,"search_contents="+search_contents
                 ,"button_name="+button_name
         );
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(v.getContext(),AcademyList.class);
+                intent1.putExtra("button_name",button_name);
+                intent1.putExtra("search_column",searchColumn.getSelectedItem().toString());
+                intent1.putExtra("search_contents",searchContents.getText());
+
+                startActivity(intent1);
+            }
+        });
     }
 
     class AsyncHttpRequest extends AsyncTask<String,Void,String> {
@@ -166,6 +185,7 @@ public class AcademyList extends AppCompatActivity {
                 for(int i=0 ; i<jsonArray.length() ; i++){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                    idx.add(jsonObject.getString("idx"));
                     aca_name.add(jsonObject.getString("acaName"));
                     address.add(jsonObject.getString("address"));
                     detail_address.add(jsonObject.getString("detailAddress"));
@@ -173,7 +193,8 @@ public class AcademyList extends AppCompatActivity {
                     image.add(jsonObject.getString("acaIntroPhoto"));
                     score.add(jsonObject.getString("score"));
 
-                    sBuffer.append("학원명 : "+jsonObject.getString("acaName"));
+                    sBuffer.append("고유번호 : "+jsonObject.getString("idx"));
+                    sBuffer.append(",학원명 : "+jsonObject.getString("acaName"));
                     sBuffer.append(",주소 : "+jsonObject.getString("address"));
                     sBuffer.append(",상세주소 : "+jsonObject.getString("detailAddress"));
                     sBuffer.append(",카테고리 : "+jsonObject.getString("category"));
@@ -240,6 +261,10 @@ public class AcademyList extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //이동할 곳의 인텐트 작업중
                     Intent intent = new Intent(view.getContext(),AcademyDetailView.class);
+                    //해당 리스트의 고유번호를 인텐트에 담아 넘김
+                    intent.putExtra("idx",idx.get(position));
+
+                    startActivity(intent);
                 }
             });
         }

@@ -25,4 +25,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //네이버지도 사용을 위한 의존설정
+    implementation 'com.naver.maps:map-sdk:3.2.1'
 }
