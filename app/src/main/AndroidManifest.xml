@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <meta-data
+
+        <!--네이버 지도 사용을 위한 추가부분분-->
+       <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="wkmdhenf78" />
         <activity android:name=".AcademyDetailView"></activity>
