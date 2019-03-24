@@ -12,12 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <!--네이버 지도 사용을 위한 추가부분분-->
-       <meta-data
+        <activity android:name=".ClassDetailInfo"></activity>
+        <!-- 네이버 지도 사용을 위한 추가부분분 -->
+        <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="wkmdhenf78" />
-        <activity android:name=".AcademyDetailView"></activity>
+
+        <activity android:name=".AcademyDetailView" />
         <activity android:name=".AcademyList" />
         <!--
             .MainActivity의 하위 엘리먼트인 <intent-filter>

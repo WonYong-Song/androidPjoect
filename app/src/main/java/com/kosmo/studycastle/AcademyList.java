@@ -49,6 +49,7 @@ public class AcademyList extends AppCompatActivity {
     ArrayList<String> category = new ArrayList<String>();
     ArrayList<String> score = new ArrayList<String>();
     ArrayList<String> image = new ArrayList<String>();
+    ArrayList<String> image_uu = new ArrayList<String>();
     ArrayList<Bitmap> imagebit = new ArrayList<Bitmap>();
 
     //이미지 처리진행할 bitmap변수
@@ -87,7 +88,7 @@ public class AcademyList extends AppCompatActivity {
         dialog.setTitle("학원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppAcaList.do"
+        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaList.do"
                 ,"search_column="+search_column
                 ,"search_contents="+search_contents
                 ,"button_name="+button_name
@@ -191,6 +192,7 @@ public class AcademyList extends AppCompatActivity {
                     detail_address.add(jsonObject.getString("detailAddress"));
                     category.add(jsonObject.getString("category"));
                     image.add(jsonObject.getString("acaIntroPhoto"));
+                    image_uu.add(jsonObject.getString("acaIntroPhotoUU"));
                     score.add(jsonObject.getString("score"));
 
                     sBuffer.append("고유번호 : "+jsonObject.getString("idx"));
@@ -206,7 +208,13 @@ public class AcademyList extends AppCompatActivity {
                         @Override
                         public void run() {
                             try{
-                                URL url = new URL("http://blogfiles.naver.net/20141219_45/weppy22_1418971309581t1gPa_JPEG/%B9%CC%C5%B0%B8%B6%BF%EC%BD%BA5.jpg");
+                                /*
+                                    url_str에는 이미지가 저장되어있는 웹주소를 넣고
+                                    jsobObject.getString()으로 파일의 이름을 가져와 같이 붙여서
+                                    new URL()의 괄호 안에 넣어 가져온다.
+                                 */
+                                String url_str = "http://blogfiles.naver.net/20141219_45/weppy22_1418971309581t1gPa_JPEG/%B9%CC%C5%B0%B8%B6%BF%EC%BD%BA5.jpg";
+                                URL url = new URL(url_str);
 
                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                                 conn.setDoInput(true);
