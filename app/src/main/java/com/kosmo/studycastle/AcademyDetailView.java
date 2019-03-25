@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,11 +28,19 @@ import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.Marker;
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.ButtonEnum;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -38,7 +48,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCallback {
+public class AcademyDetailView extends AppCompatActivity  {
 
 
     //전역변수 선언s
@@ -47,13 +57,24 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
     //네이버지도 이용을 위한 변수선언
     private MapView mapView;
 
+    //주소에서 위경도 값을 가져오기 위한 geocoder처리를 위한 변수
+    Geocoder geocoder;
+    String geoStr;
+    String[] geoStrArray;
+    String latitudeStr;
+    String longitudeStr;
+    double latitude;
+    double longitude;
+
     //젼역변수
     ImageView aca_image,tea_image;
     TextView category,aca_name,telephone,address,introduce,tea_name,tea_intro;
     GridView teacher_intro;
     ListView class_info;
     ProgressDialog dialog; //대기시 프로그래스 창 사용을 위한 변수
-    ScrollView mother_scroll,scroll1,scroll2;
+    ScrollView mother_scroll;
+    BoomMenuButton bmb;
+    Intent intent2;
 
     //이미지 처리진행할 bitmap변수
     ArrayList<Bitmap> acaimagebit = new ArrayList<Bitmap>();//학원이미지
@@ -102,13 +123,48 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
         setContentView(R.layout.activity_academy_detail_view);
 
         context=this;
-
-        //네이버지도 구현 부분
+        geocoder = new Geocoder(this);
         mapView = findViewById(R.id.map_view);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
 
+        //붐메뉴적용
+        bmb = (BoomMenuButton)findViewById(R.id.bmb);
+        bmb.setButtonEnum(ButtonEnum.TextInsideCircle);
+        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_2_2);
+        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_2_1);
+        for (int i = 0; i < bmb.getButtonPlaceEnum().buttonNumber(); i++) {
+            /*
+            bmb.addBuilder(new SimpleCircleButton.Builder()
+                    .normalImageRes(R.drawable.study_castle));
+            */
+            TextInsideCircleButton.Builder builder = new TextInsideCircleButton.Builder();
+            if(i==0){
+                builder.normalImageRes(R.drawable.my)
+                        .normalText("마이페이지")
+                        .listener(new OnBMClickListener() {
+                            @Override
+                            public void onBoomButtonClick(int index) {
+                                intent2 = new Intent(getApplicationContext(),MyPage.class);
 
+                                startActivity(intent2);
+                            }
+                        });
+            }
+            else {
+                builder.normalImageRes(R.drawable.icon_home)
+                        .normalText("홈으로")
+                        .listener(new OnBMClickListener() {
+                            @Override
+                            public void onBoomButtonClick(int index) {
+                                intent2 = new Intent(getApplicationContext(),MainActivity.class);
+
+                                startActivity(intent2);
+                            }
+                        });
+            }
+
+            bmb.addBuilder(builder);
+
+        }
         //이전 엑티비이에서 전달한 부가 데이터 읽어오기
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -117,6 +173,7 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
         //전달받은 인텐트값 확인하기
         Log.i("getIntent","idx:"+idx);
 
+
         //ProgressDialog객체생성(서버 응답 대기용)
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -124,10 +181,11 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
         dialog.setTitle("학원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        //스크롤뷰 내부 스크롤 뷰작동하기위한 코드
+        //스크롤뷰 내부 뷰에서 스크롤 기능을 작동하기위한 코드
         mother_scroll = (ScrollView)findViewById(R.id.mother_scroll);
         teacher_intro = (GridView)findViewById(R.id.teacher_intro);
         class_info = (ListView)findViewById(R.id.class_info);
+
         teacher_intro.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -152,15 +210,52 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
                 return false;
             }
         });
+        mapView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    mother_scroll.requestDisallowInterceptTouchEvent(false);
+                }
+                else{
+                    mother_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
 
 
         //AsyncTask를 이용한 서버 접속
-        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaDetail.do"
+        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppAcaDetail.do"
                 ,"idx="+idx
         );
+
+        //네이버지도 구현 부분
+        mapView.onCreate(savedInstanceState);
+
     }//onCreate
 
-    class AsyncHttpRequest extends AsyncTask<String,Void,String> {
+
+
+    class AsyncHttpRequest extends AsyncTask<String,Void,String> implements OnMapReadyCallback{
+
+        @UiThread
+        @Override
+        public void onMapReady(@NonNull NaverMap naverMap) {
+
+            naverMap.setMapType(NaverMap.MapType.Basic);
+            naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT,true);
+
+            //마커 셋팅
+            Marker marker = new Marker();
+            marker.setWidth(Marker.SIZE_AUTO);
+            marker.setHeight(Marker.SIZE_AUTO);
+            marker.setPosition(new LatLng(latitude, longitude));
+            marker.setMap(naverMap);
+
+            //카메라 위치 지정
+            naverMap.setCameraPosition(new CameraPosition(new LatLng(latitude,longitude),15));
+            Log.d("지도에 들어가는 위경도 값",Double.toString(latitude)+","+Double.toString(longitude));
+        }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -245,6 +340,27 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
                 address_result = object1.getString("address");
                 detailAddress = object1.getString("detailAddress");
                 introduce_result = object1.getString("introduce");
+
+                //주소를 가지고 위경도 값 가져오기
+                try{
+                    geoStr = (geocoder.getFromLocationName(address_result,10)).get(0).toString();
+                }
+                catch (NumberFormatException e){
+                    e.printStackTrace();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+                Log.d("위경도 geocoder처리 : ",geoStr);
+                geoStrArray = geoStr.split(",");
+                latitudeStr = geoStrArray[10];
+                longitudeStr = geoStrArray[12];
+                Log.d("위도:",latitudeStr);
+                Log.d("경도:",longitudeStr);
+                latitude = Double.parseDouble(latitudeStr.split("=")[1]);
+                longitude = Double.parseDouble(longitudeStr.split("=")[1]);
+                Log.d("위경도 더플형으로 파싱 이후:",Double.toString(latitude)+","+Double.toString(longitude));
+
 
                 //학원소개이미지
                 final String[] acaPhotoArray = acaIntroPhoto.split(","); //여러장인 경우 구분자로 나눠서 이미지처리 진행을 위해 배열처리
@@ -382,6 +498,8 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
             address.setText(address_result+" "+detailAddress);
             introduce.setText(introduce_result);
 
+            mapView.getMapAsync(this);
+
             //커스텀뷰1
             Log.i("커스텀뷰에 들어가기전 강사정보 갯수",Integer.toString(teaName.size()));
             TeacherAdapter teacherAdapter = new TeacherAdapter(context,teaimagebit,teaName,teaIntro,subject);
@@ -392,6 +510,8 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
             ClassInfo classInfo = new ClassInfo();
 
             class_info.setAdapter(classInfo);
+
+
         }
     }
 
@@ -471,13 +591,5 @@ public class AcademyDetailView extends AppCompatActivity implements OnMapReadyCa
         mapView.onLowMemory();
     }
 
-    @Override
-    public void onMapReady(@NonNull NaverMap naverMap) {
-        naverMap.setMapType(NaverMap.MapType.Basic);
-        naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRAFFIC,true);
-        NaverMapOptions options = new NaverMapOptions()
-                .camera(new CameraPosition(new LatLng(35.1798159,129.0750222),8));
-        mapView = new MapView(this,options);
 
-    }
 }
