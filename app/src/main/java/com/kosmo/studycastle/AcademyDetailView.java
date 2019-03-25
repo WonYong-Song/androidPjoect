@@ -32,6 +32,7 @@ public class AcademyDetailView extends AppCompatActivity {
         mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
 
+
         //이전 엑티비이에서 전달한 부가 데이터 읽어오기
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
