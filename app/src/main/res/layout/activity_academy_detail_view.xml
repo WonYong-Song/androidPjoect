@@ -9,49 +9,67 @@
         android:id="@+id/mother_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        >
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:columnCount="2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/line">
 
             <ImageView android:id="@+id/aca_image"
                 android:scaleType="fitCenter"
                 android:src="@drawable/study_castle"
                 android:layout_columnSpan="2"
                 android:layout_gravity="fill"
-                android:layout_height="200dp"/>
-            <TextView android:text="카테고리 "/>
-            <TextView android:id="@+id/category"/>
+                android:layout_height="200dp"
+                android:layout_width="match_parent"/>
 
+            <TextView android:text="카테고리 "
+                android:background="@drawable/line"/>
+            <TextView android:id="@+id/category"
+                android:background="@drawable/line"/>
 
-            <TextView android:text="캐슬명 "/>
-            <TextView android:id="@+id/aca_name"/>
+            <TextView android:text="캐슬명     "
+                android:background="@drawable/line"/>
+            <TextView android:id="@+id/aca_name"
+                android:background="@drawable/line"/>
 
-            <TextView android:text="캐슬번호 "/>
-            <TextView android:id="@+id/telephone"/>
+            <TextView android:text="캐슬번호 "
+                android:background="@drawable/line"/>
+            <TextView android:id="@+id/telephone"
+                android:background="@drawable/line"/>
 
-            <TextView android:text="캐슬주소 "/>
-            <TextView android:id="@+id/address"/>
+            <TextView android:text="캐슬주소 "
+                android:background="@drawable/line"/>
+            <TextView android:id="@+id/address"
+                android:background="@drawable/line"/>
 
-            <TextView android:text="캐슬소개 "/>
-            <TextView android:id="@+id/introduce"/>
+            <TextView android:text="캐슬소개 "
+                android:background="@drawable/line"/>
+            <TextView android:id="@+id/introduce"
+                android:background="@drawable/line"/>
 
             <TextView android:text="강사진"
-                android:layout_columnSpan="2"/>
+                android:layout_columnSpan="2"
+                android:layout_width="match_parent"
+                android:background="@drawable/line"/>
+
             <GridView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="4"
                 android:gravity="center"
-                android:id="@+id/teacher_intro">
+                android:id="@+id/teacher_intro"
+                android:layout_columnSpan="2">
             </GridView>
 
-
-
             <TextView android:text="오시는길"
-                android:layout_columnSpan="2"/>
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:background="@drawable/line"/>
+
             <!--네이버 지도를 이용하기 위한 맵뷰 사용-->
             <com.naver.maps.map.MapView
                 android:id="@+id/map_view"
@@ -60,8 +78,12 @@
                 android:layout_columnSpan="2"/>
 
             <TextView android:text="수강신청 "
-                android:layout_columnSpan="2"/>
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:background="@drawable/line"/>
+
             <ListView
+                android:layout_columnSpan="2"
                 android:layout_gravity="fill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,6 +97,10 @@
 
         </GridLayout>
     </ScrollView>
-
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>

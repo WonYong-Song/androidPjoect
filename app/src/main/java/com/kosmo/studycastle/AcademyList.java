@@ -19,6 +19,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.ButtonEnum;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,6 +45,8 @@ public class AcademyList extends AppCompatActivity {
     Button searchButton;
     ListView acaList;
     ProgressDialog dialog;//대기시 프로그레스창
+    BoomMenuButton bmb;
+    Intent intent2;
 
     //전역변수 인텐트
 
@@ -61,6 +70,46 @@ public class AcademyList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academy_list);
 
+        //붐메뉴적용
+        bmb = (BoomMenuButton)findViewById(R.id.bmb);
+        bmb.setButtonEnum(ButtonEnum.TextInsideCircle);
+        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_2_2);
+        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_2_1);
+        for (int i = 0; i < bmb.getButtonPlaceEnum().buttonNumber(); i++) {
+            /*
+            bmb.addBuilder(new SimpleCircleButton.Builder()
+                    .normalImageRes(R.drawable.study_castle));
+            */
+            TextInsideCircleButton.Builder builder = new TextInsideCircleButton.Builder();
+            if(i==0){
+                builder.normalImageRes(R.drawable.my)
+                        .normalText("마이페이지")
+                        .listener(new OnBMClickListener() {
+                            @Override
+                            public void onBoomButtonClick(int index) {
+                                intent2 = new Intent(getApplicationContext(),MyPage.class);
+
+                                startActivity(intent2);
+                            }
+                        });
+            }
+            else {
+                builder.normalImageRes(R.drawable.icon_home)
+                        .normalText("홈으로")
+                        .listener(new OnBMClickListener() {
+                            @Override
+                            public void onBoomButtonClick(int index) {
+                                intent2 = new Intent(getApplicationContext(),MainActivity.class);
+
+                                startActivity(intent2);
+                            }
+                        });
+            }
+
+            bmb.addBuilder(builder);
+
+        }
+
         //스피너 부착
         final Spinner searchSpinner = (Spinner)findViewById(R.id.search_column);
         ArrayAdapter searchAdapter = ArrayAdapter.createFromResource(this,R.array.search_column,android.R.layout.simple_spinner_dropdown_item);
@@ -70,6 +119,8 @@ public class AcademyList extends AppCompatActivity {
         searchColumn = (Spinner)findViewById(R.id.search_column);
         searchContents = (EditText)findViewById(R.id.search_contents);
         searchButton = (Button)findViewById(R.id.search_button);
+
+
 
         //메인 액티비티에서 전달한 부가데이터 읽어오기
         Intent intent = getIntent();
@@ -88,7 +139,7 @@ public class AcademyList extends AppCompatActivity {
         dialog.setTitle("학원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaList.do"
+        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppAcaList.do"
                 ,"search_column="+search_column
                 ,"search_contents="+search_contents
                 ,"button_name="+button_name
@@ -105,6 +156,8 @@ public class AcademyList extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+
     }
 
     class AsyncHttpRequest extends AsyncTask<String,Void,String> {

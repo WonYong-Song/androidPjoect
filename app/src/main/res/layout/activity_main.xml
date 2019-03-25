@@ -46,5 +46,10 @@
             android:layout_weight="1"
             android:text="기타"/>
     </LinearLayout>
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>

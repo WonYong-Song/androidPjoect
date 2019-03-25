@@ -11,46 +11,57 @@
         <TableRow>
             <TextView android:text="강의명"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
             <TextView android:text="강사명"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
         </TableRow>
         <TableRow>
             <TextView android:id="@+id/class_name"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
             <TextView android:id="@+id/tea_name"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
         </TableRow>
         <TableRow>
             <TextView android:text="강의기간"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
             <TextView android:text="강의시간"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
         </TableRow>
         <TableRow>
             <TextView android:id="@+id/class_time"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
             <TextView android:id="@+id/class_term"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
 
         </TableRow>
         <TableRow>
             <TextView android:text="수강료"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
             <TextView android:text="수강인원"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
             <TextView android:text="결제"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line"/>
         </TableRow>
         <TableRow>
             <TextView android:id="@+id/class_pay"
