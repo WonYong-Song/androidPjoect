@@ -21,13 +21,91 @@ public class MyPage extends AppCompatActivity {
     SharedPreferences.Editor editor;
     BoomMenuButton bmb;
     Intent intent2;
-    ImageView mypage;
-    TextView login, purchase_class, schedule;
+    TextView login, buy_list, schedule;
+    ImageView my;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
+
+        final SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
+        String name = pref.getString("name","로그인해주세요");
+        final String id = pref.getString("id","");
+        //이미지 처리
+        my = (ImageView)findViewById(R.id.my);
+        my.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                    Intent intent = new Intent(v.getContext(),MyInfo.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                }
+            }
+        });
+        //로그인 텍스트처리
+        login = (TextView)findViewById(R.id.login);
+        login.setText(name);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                    Intent intent = new Intent(v.getContext(),MyInfo.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        //등록한 수강목록처리
+        buy_list = (TextView)findViewById(R.id.buy_list);
+        buy_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                }
+            }
+        });
+
+        //시간표 처리
+        schedule = (TextView)findViewById(R.id.schedule);
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                }
+            }
+        });
+
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);
@@ -68,77 +146,5 @@ public class MyPage extends AppCompatActivity {
             bmb.addBuilder(builder);
 
         }
-
-        final SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
-        String name = pref.getString("name","로그인해주세요");
-        login = (TextView)findViewById(R.id.login);
-        login.setText(name);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if (pref.getString("id","").equals("")){
-                    //로그인이 되어있지 않은 경우 로그인 페이지로
-                    intent = new Intent(v.getContext(),Login.class);
-                    startActivity(intent);
-                }
-                else{
-                    //로그인이 되어있는 경우 회원정보 페이지로
-
-                }
-            }
-        });
-        mypage = (ImageView)findViewById(R.id.mypage);
-        mypage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if (pref.getString("id","").equals("")){
-                    //로그인이 되어있지 않은 경우 로그인 페이지로
-                    intent = new Intent(v.getContext(),Login.class);
-                    startActivity(intent);
-                }
-                else{
-                    //로그인이 되어있는 경우 회원정보 페이지로
-
-                }
-            }
-        });
-        purchase_class = (TextView)findViewById(R.id.purchase_class);
-        purchase_class.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if (pref.getString("id","").equals("")){
-                    //로그인이 되어있지 않은 경우 로그인 페이지로
-                    intent = new Intent(v.getContext(),Login.class);
-                    startActivity(intent);
-                }
-                else{
-                    //로그인이 되어있는 경우 등록한 수강목록 확인 페이지로
-
-                }
-            }
-        });
-        schedule = (TextView)findViewById(R.id.schedule);
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if (pref.getString("id","").equals("")){
-                    //로그인이 되어있지 않은 경우 로그인 페이지로
-                    intent = new Intent(v.getContext(),Login.class);
-                    startActivity(intent);
-                }
-                else{
-                    //로그인이 되어있는 경우 등록한 수강목록 확인 페이지로
-
-                }
-            }
-        });
-
-
-
-
     }
 }

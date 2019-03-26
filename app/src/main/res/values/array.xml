@@ -6,5 +6,12 @@
         <item>위치</item>
         <item>이름+위치</item>
     </string-array>
+    <string-array name="email_domain">
+        <item>naver.com</item>
+        <item>hanmail.net</item>
+        <item>gmail.com</item>
+        <item>nate.com</item>
+        <item>직접입력</item>
+    </string-array>
 
 </resources>

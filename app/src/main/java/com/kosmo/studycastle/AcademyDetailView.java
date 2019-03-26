@@ -318,7 +318,7 @@ public class AcademyDetailView extends AppCompatActivity  {
             }
 
 
-            //JSONArray파싱하기
+            //JSONObject파싱하기
             try{
                 Log.i("KOSMO",sBuffer.toString());
 
@@ -423,7 +423,7 @@ public class AcademyDetailView extends AppCompatActivity  {
                                     jsobObject.getString()으로 파일의 이름을 가져와 같이 붙여서
                                     new URL()의 괄호 안에 넣어 가져온다.
                                  */
-                                String url_str = "http://blogfiles.naver.net/20141219_45/weppy22_1418971309581t1gPa_JPEG/%B9%CC%C5%B0%B8%B6%BF%EC%BD%BA5.jpg";
+                                String url_str = "https://previews.123rf.com/images/tigatelu/tigatelu1404/tigatelu140400198/27656695-%EA%B5%90%EC%88%98%EC%9D%98-%EB%A7%8C%ED%99%94-%EA%B5%90%EC%9C%A1.jpg";
                                 URL url = new URL(url_str);
 
                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -538,7 +538,7 @@ public class AcademyDetailView extends AppCompatActivity  {
             view.setClassName(className.get(position));
             view.setTeaName(classTeaName.get(position));
             view.setClassTerm(startDate.get(position)+"~"+endDate.get(position));
-            view.setClassTime("매주 "+day.get(position)+"요일 "+startTime.get(position)+"~"+endTime.get(position));
+            view.setClassTime("매주 "+day.get(position)+" "+startTime.get(position)+"~"+endTime.get(position));
             view.setClassPay(pay.get(position)+"원");
             view.setClassPersonnal(classMembers.get(position)+"/"+participants.get(position)+" 명");
 
