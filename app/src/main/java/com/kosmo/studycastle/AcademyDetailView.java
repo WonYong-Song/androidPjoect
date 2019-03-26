@@ -225,7 +225,7 @@ public class AcademyDetailView extends AppCompatActivity  {
 
 
         //AsyncTask를 이용한 서버 접속
-        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppAcaDetail.do"
+        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaDetail.do"
                 ,"idx="+idx
         );
 

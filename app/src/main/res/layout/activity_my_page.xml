@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/mypage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/my"/>
@@ -27,12 +28,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/purchase_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="등록한 수강목록"
             android:textSize="20dp"/>
 
         <TextView
+            android:id="@+id/schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="시간표"

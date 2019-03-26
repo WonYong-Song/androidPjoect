@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
@@ -19,17 +21,13 @@ public class MyPage extends AppCompatActivity {
     SharedPreferences.Editor editor;
     BoomMenuButton bmb;
     Intent intent2;
-    TextView login;
+    ImageView mypage;
+    TextView login, purchase_class, schedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
-
-        SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
-        String name = pref.getString("name","로그인해주세요");
-        login = (TextView)findViewById(R.id.login);
-        login.setText(name);
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);
@@ -70,5 +68,77 @@ public class MyPage extends AppCompatActivity {
             bmb.addBuilder(builder);
 
         }
+
+        final SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
+        String name = pref.getString("name","로그인해주세요");
+        login = (TextView)findViewById(R.id.login);
+        login.setText(name);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if (pref.getString("id","").equals("")){
+                    //로그인이 되어있지 않은 경우 로그인 페이지로
+                    intent = new Intent(v.getContext(),Login.class);
+                    startActivity(intent);
+                }
+                else{
+                    //로그인이 되어있는 경우 회원정보 페이지로
+
+                }
+            }
+        });
+        mypage = (ImageView)findViewById(R.id.mypage);
+        mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if (pref.getString("id","").equals("")){
+                    //로그인이 되어있지 않은 경우 로그인 페이지로
+                    intent = new Intent(v.getContext(),Login.class);
+                    startActivity(intent);
+                }
+                else{
+                    //로그인이 되어있는 경우 회원정보 페이지로
+
+                }
+            }
+        });
+        purchase_class = (TextView)findViewById(R.id.purchase_class);
+        purchase_class.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if (pref.getString("id","").equals("")){
+                    //로그인이 되어있지 않은 경우 로그인 페이지로
+                    intent = new Intent(v.getContext(),Login.class);
+                    startActivity(intent);
+                }
+                else{
+                    //로그인이 되어있는 경우 등록한 수강목록 확인 페이지로
+
+                }
+            }
+        });
+        schedule = (TextView)findViewById(R.id.schedule);
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if (pref.getString("id","").equals("")){
+                    //로그인이 되어있지 않은 경우 로그인 페이지로
+                    intent = new Intent(v.getContext(),Login.class);
+                    startActivity(intent);
+                }
+                else{
+                    //로그인이 되어있는 경우 등록한 수강목록 확인 페이지로
+
+                }
+            }
+        });
+
+
+
+
     }
 }
