@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
@@ -19,17 +21,91 @@ public class MyPage extends AppCompatActivity {
     SharedPreferences.Editor editor;
     BoomMenuButton bmb;
     Intent intent2;
-    TextView login;
+    TextView login, buy_list, schedule;
+    ImageView my;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
 
-        SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
+        final SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         String name = pref.getString("name","로그인해주세요");
+        final String id = pref.getString("id","");
+        //이미지 처리
+        my = (ImageView)findViewById(R.id.my);
+        my.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                    Intent intent = new Intent(v.getContext(),MyInfo.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                }
+            }
+        });
+        //로그인 텍스트처리
         login = (TextView)findViewById(R.id.login);
         login.setText(name);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                    Intent intent = new Intent(v.getContext(),MyInfo.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        //등록한 수강목록처리
+        buy_list = (TextView)findViewById(R.id.buy_list);
+        buy_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                }
+            }
+        });
+
+        //시간표 처리
+        schedule = (TextView)findViewById(R.id.schedule);
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pref.getString("id","").equals("")){
+                    //로그인되어있지 않을때
+                    Intent intent = new Intent(v.getContext(),Login.class);
+                    //로그인페이지로이동
+                    startActivity(intent);
+                }
+                else{
+                    //로그인되어있을때
+                }
+            }
+        });
+
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);

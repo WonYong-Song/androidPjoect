@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyPage"></activity>
+        <activity android:name=".MyInfoModify"></activity>
+        <activity android:name=".MyInfo" />
+        <activity android:name=".MyPage" />
         <activity android:name=".Login" /> <!-- 네이버 지도 사용을 위한 추가부분분 -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

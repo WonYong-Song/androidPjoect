@@ -28,5 +28,4 @@ dependencies {
     //네이버지도 사용을 위한 의존설정
     implementation 'com.naver.maps:map-sdk:3.2.1'
     implementation 'com.nightonke:boommenu:2.1.1'
-    implementation 'com.nightonke:boommenu:1.0.9'
 }

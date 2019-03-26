@@ -116,7 +116,6 @@ public class AcademyList extends AppCompatActivity {
         searchSpinner.setAdapter(searchAdapter);
 
         //위젯 얻어오기
-        searchColumn = (Spinner)findViewById(R.id.search_column);
         searchContents = (EditText)findViewById(R.id.search_contents);
         searchButton = (Button)findViewById(R.id.search_button);
 
