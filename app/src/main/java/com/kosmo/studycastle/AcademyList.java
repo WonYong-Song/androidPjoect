@@ -138,7 +138,7 @@ public class AcademyList extends AppCompatActivity {
         dialog.setTitle("학원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppAcaList.do"
+        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaList.do"
                 ,"search_column="+search_column
                 ,"search_contents="+search_contents
                 ,"button_name="+button_name
