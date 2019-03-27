@@ -109,7 +109,12 @@ public class Login extends AppCompatActivity {
                 ,"pass="+spwd
         );
 
+    }
 
+    //회원가입 버튼 클릭했을때..
+    public void btnMemberJoin(View view){
+        Intent intent = new Intent(view.getContext(),MembersJoin.class);
+        startActivity(intent);
     }
 
     class AsyncHttpRequest extends AsyncTask<String,Void,String> {

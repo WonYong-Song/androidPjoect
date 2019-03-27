@@ -116,7 +116,7 @@ public class MyInfo extends AppCompatActivity {
             }
         });
         new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppMyInfo.do"
-                ,"id="+id
+                ,"id="+idstr
         );
 
     }//onCreate

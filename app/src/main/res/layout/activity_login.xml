@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etID"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="아이디" />
+        <EditText
+            android:id="@+id/etID"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content" >
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="비밀번호" />
+        <EditText
+            android:id="@+id/etPwd"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="62dp"
-        android:ems="10">
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/etPwd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etID"
-        android:layout_alignLeft="@+id/etID"
-        android:layout_marginTop="19dp"
-        android:ems="10"
-        android:inputType="textPassword"/>
-
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/etID"
-        android:layout_alignBottom="@+id/etID"
-        android:layout_toLeftOf="@+id/etPwd"
-        android:text="아이디" />
-
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/etPwd"
-        android:layout_alignRight="@+id/tvResult"
-        android:text="비밀번호" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etPwd"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:onClick="btnLoginClicked"
-        android:text="로그인" />
+        android:gravity="center">
+        <Button
+            android:id="@+id/joinMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnMemberJoin"
+            android:text="회원가입"/>
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnLoginClicked"
+            android:text="로그인" />
+    </LinearLayout>
 
     <com.nightonke.boommenu.BoomMenuButton
         android:id="@+id/bmb"
@@ -62,4 +64,4 @@
         android:layout_height="wrap_content" />
 
 
-</RelativeLayout>
+</LinearLayout>
