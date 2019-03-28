@@ -85,6 +85,7 @@ public class MyPage extends AppCompatActivity {
                 }
                 else{
                     //로그인되어있을때
+
                 }
             }
         });
