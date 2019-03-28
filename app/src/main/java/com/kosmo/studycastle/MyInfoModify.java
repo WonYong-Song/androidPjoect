@@ -82,7 +82,11 @@ public class MyInfoModify extends AppCompatActivity {
         domain.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==4){
+                if(position==0){
+                    emaildomain.setText("");
+                    emaildomain.setFocusable(false);
+                }
+                else if(position==5){
                     emaildomain.setText("");
                     emaildomain.setFocusableInTouchMode(true);
                     emaildomain.requestFocus();

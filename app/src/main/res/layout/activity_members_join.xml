@@ -15,12 +15,28 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="아이디"/>
-        <TextView
+        <EditText
             android:id="@+id/id"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:text="id Text"/>
+            android:text=""/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text=""/>
+        <TextView
+            android:id="@+id/idresult"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:textColor="#FF2222"
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +52,7 @@
             android:layout_weight="3"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:text="pass Text"/>
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +68,23 @@
             android:layout_weight="3"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:text="pass Text"/>
+            android:text=""/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text=""/>
+        <TextView
+            android:id="@+id/passresult"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:textColor="#FF2222"
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +99,7 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:text="고객명"/>
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +119,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="email Text"/>
+                android:text=""/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,7 +129,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="email Text"
+                android:text=""
                 android:focusable="false"/>
             <Spinner
                 android:id="@+id/domain"
@@ -128,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="3"
-                android:text="000"/>
+                android:text=""/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="4"
-                android:text="0000"/>
+                android:text=""/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLength="4"
-                android:text="0000"/>
+                android:text=""/>
         </LinearLayout>
 
     </LinearLayout>
@@ -237,6 +269,7 @@
             android:bufferType="spannable"
             android:text="이용약관동의(필수)"/>
         <TextView
+            android:id="@+id/detail1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -252,10 +285,16 @@
             android:bufferType="spannable"
             android:text="개인정보 수집 및 이용동의(필수)"/>
         <TextView
+            android:id="@+id/detail2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="내용보기"/>
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="회원가입하기기"/>
 
 </LinearLayout>
