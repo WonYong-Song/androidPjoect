@@ -225,7 +225,10 @@ public class AcademyDetailView extends AppCompatActivity  {
 
 
         //AsyncTask를 이용한 서버 접속
-        new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppAcaDetail.do"
+        String map = "/catle/AppAcaDetail.do";
+        String url;
+        url = getString(R.string.http);
+        new AsyncHttpRequest().execute(url+map
                 ,"idx="+idx
         );
 

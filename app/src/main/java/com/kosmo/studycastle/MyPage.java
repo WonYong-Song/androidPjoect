@@ -24,6 +24,8 @@ public class MyPage extends AppCompatActivity {
     TextView login, buy_list, schedule;
     ImageView my;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class MyPage extends AppCompatActivity {
 
         final SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         String name = pref.getString("name","로그인해주세요");
-        final String id = pref.getString("id","");
+        id = pref.getString("id","");
         //이미지 처리
         my = (ImageView)findViewById(R.id.my);
         my.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +47,7 @@ public class MyPage extends AppCompatActivity {
                 }
                 else{
                     //로그인되어있을때
+                    //내정보보기로 이동
                     Intent intent = new Intent(v.getContext(),MyInfo.class);
                     intent.putExtra("id",id);
                     startActivity(intent);
@@ -65,6 +68,7 @@ public class MyPage extends AppCompatActivity {
                 }
                 else{
                     //로그인되어있을때
+                    //내정보보기로 이동
                     Intent intent = new Intent(v.getContext(),MyInfo.class);
                     intent.putExtra("id",id);
                     startActivity(intent);
@@ -85,6 +89,8 @@ public class MyPage extends AppCompatActivity {
                 }
                 else{
                     //로그인되어있을때
+                    Intent intent = new Intent(v.getContext(),BuyList.class);
+                    intent.putExtra("id",id);
 
                 }
             }
