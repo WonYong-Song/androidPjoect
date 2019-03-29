@@ -292,6 +292,7 @@
             android:text="내용보기"/>
     </LinearLayout>
     <Button
+        android:onClick="btnMemberJoinAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
