@@ -107,7 +107,7 @@ public class Login extends AppCompatActivity {
         String map = "/catle/AppLoginAction.do";
         String url;
         url = getString(R.string.http);
-        new AsyncHttpRequest().execute(map+url
+        new AsyncHttpRequest().execute(url+map
                 ,"id="+sid
                 ,"pass="+spwd
         );
