@@ -70,7 +70,7 @@ public class AcademyDetailView extends AppCompatActivity  {
     ImageView aca_image,tea_image;
     TextView category,aca_name,telephone,address,introduce,tea_name,tea_intro;
     GridView teacher_intro;
-    ListView class_info;
+    ListView class_info, class_review;
     ProgressDialog dialog; //대기시 프로그래스 창 사용을 위한 변수
     ScrollView mother_scroll;
     BoomMenuButton bmb;
@@ -112,6 +112,14 @@ public class AcademyDetailView extends AppCompatActivity  {
     ArrayList<String> participants = new ArrayList<String>();
     ArrayList<String> pay = new ArrayList<String>();
     ArrayList<String> classMembers = new ArrayList<String>();
+
+    //리뷰정보
+    ArrayList<String> writerid = new ArrayList<String>();
+    ArrayList<String> score = new ArrayList<String>();
+    ArrayList<String> scorestr = new ArrayList<String>();
+    ArrayList<String> contents = new ArrayList<String>();
+
+
     //통신결과를 저장하기위한 변수선언e
     //전역변수 선언e
 
@@ -185,6 +193,7 @@ public class AcademyDetailView extends AppCompatActivity  {
         mother_scroll = (ScrollView)findViewById(R.id.mother_scroll);
         teacher_intro = (GridView)findViewById(R.id.teacher_intro);
         class_info = (ListView)findViewById(R.id.class_info);
+        class_review = (ListView)findViewById(R.id.class_review);
 
         teacher_intro.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -211,6 +220,18 @@ public class AcademyDetailView extends AppCompatActivity  {
             }
         });
         mapView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    mother_scroll.requestDisallowInterceptTouchEvent(false);
+                }
+                else{
+                    mother_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+        class_review.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==MotionEvent.ACTION_UP){
@@ -470,6 +491,17 @@ public class AcademyDetailView extends AppCompatActivity  {
                     pay.add(object3.getString("pay"));
                     classMembers.add(object3.getString("classMembers"));
                 }
+
+                //리뷰정보 출력
+                JSONArray result4 = jsonObject.getJSONArray("리뷰");
+                for(int i=0 ; i<result4.length() ; i++){
+                    JSONObject object4 = result4.getJSONObject(i);
+                    writerid.add(object4.getString("id"));
+                    score.add(object4.getString("score"));
+                    scorestr.add(object4.getString("reviewcontents"));
+                    contents.add(object4.getString("writetime"));
+                }
+
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -503,16 +535,19 @@ public class AcademyDetailView extends AppCompatActivity  {
 
             mapView.getMapAsync(this);
 
-            //커스텀뷰1
+            //커스텀뷰1 - 학원선생님 정보
             Log.i("커스텀뷰에 들어가기전 강사정보 갯수",Integer.toString(teaName.size()));
             TeacherAdapter teacherAdapter = new TeacherAdapter(context,teaimagebit,teaName,teaIntro,subject);
-
             teacher_intro.setAdapter(teacherAdapter);
 
-            //커스텀뷰2
+            //커스텀뷰2 - 수강정보
             ClassInfo classInfo = new ClassInfo();
-
             class_info.setAdapter(classInfo);
+
+            //커스텀뷰3 - 리뷰정보
+            Review review = new Review();
+            class_review.setAdapter(review);
+
 
 
         }
@@ -545,6 +580,34 @@ public class AcademyDetailView extends AppCompatActivity  {
             view.setClassPay(pay.get(position)+"원");
             view.setClassPersonnal(classMembers.get(position)+"/"+participants.get(position)+" 명");
 
+            return view;
+        }
+    }
+
+    //커스텀어뎁터3 - 리뷰
+    class Review extends BaseAdapter{
+        @Override
+        public int getCount() {
+            return writerid.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return writerid.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ReviewInfo view = new ReviewInfo(getApplicationContext());
+            view.setId(writerid.get(position));
+            view.setScore(score.get(position));
+            view.setScorestr(scorestr.get(position));
+            view.setContent(contents.get(position));
             return view;
         }
     }
