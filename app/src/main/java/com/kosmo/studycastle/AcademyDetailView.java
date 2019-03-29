@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -112,10 +113,10 @@ public class AcademyDetailView extends AppCompatActivity  {
     ArrayList<String> participants = new ArrayList<String>();
     ArrayList<String> pay = new ArrayList<String>();
     ArrayList<String> classMembers = new ArrayList<String>();
+
+
     //통신결과를 저장하기위한 변수선언e
     //전역변수 선언e
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

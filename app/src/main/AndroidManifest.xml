@@ -25,7 +25,7 @@
 
         <activity android:name=".ClassDetailInfo" />
         <activity android:name=".AcademyDetailView" />
-        <activity android:name=".AcademyList" />
+        <activity android:name=".AcademyList" android:windowSoftInputMode="adjustPan"/>
         <!--
             .MainActivity의 하위 엘리먼트인 <intent-filter>
             부분을 .Intro하위로 이동한다.
