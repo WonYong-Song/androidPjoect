@@ -550,8 +550,6 @@ public class AcademyDetailView extends AppCompatActivity  {
     }
 
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -593,6 +591,5 @@ public class AcademyDetailView extends AppCompatActivity  {
         super.onLowMemory();
         mapView.onLowMemory();
     }
-
 
 }
