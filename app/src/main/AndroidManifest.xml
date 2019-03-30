@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviewInfo"></activity>
+        <activity android:name=".BuyClassList"></activity>
+        <activity android:name=".ReviewInfo" />
         <activity android:name=".BuyList" />
         <activity android:name=".MembersJoin" />
         <activity android:name=".MyInfoModifyAction" />
@@ -26,7 +27,9 @@
 
         <activity android:name=".ClassDetailInfo" />
         <activity android:name=".AcademyDetailView" />
-        <activity android:name=".AcademyList" android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".AcademyList"
+            android:windowSoftInputMode="adjustPan" />
         <!--
             .MainActivity의 하위 엘리먼트인 <intent-filter>
             부분을 .Intro하위로 이동한다.

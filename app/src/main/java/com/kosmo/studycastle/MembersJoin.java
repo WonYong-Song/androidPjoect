@@ -242,7 +242,7 @@ public class MembersJoin extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setIcon(android.R.drawable.ic_dialog_alert);
-        dialog.setTitle("학원정보 리스트 가져오기");
+        dialog.setTitle("회원가입 처리중");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
     }//onCreate
 
