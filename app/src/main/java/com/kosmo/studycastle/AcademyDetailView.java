@@ -116,7 +116,7 @@ public class AcademyDetailView extends AppCompatActivity  {
     //리뷰정보
     ArrayList<String> writerid = new ArrayList<String>();
     ArrayList<String> score = new ArrayList<String>();
-    ArrayList<String> scorestr = new ArrayList<String>();
+    ArrayList<String> writetime = new ArrayList<String>();
     ArrayList<String> contents = new ArrayList<String>();
 
 
@@ -498,8 +498,8 @@ public class AcademyDetailView extends AppCompatActivity  {
                     JSONObject object4 = result4.getJSONObject(i);
                     writerid.add(object4.getString("id"));
                     score.add(object4.getString("score"));
-                    scorestr.add(object4.getString("reviewcontents"));
-                    contents.add(object4.getString("writetime"));
+                    contents.add(object4.getString("reviewcontents"));
+                    writetime.add(object4.getString("writetime"));
                 }
 
             }
@@ -606,7 +606,7 @@ public class AcademyDetailView extends AppCompatActivity  {
             ReviewInfo view = new ReviewInfo(getApplicationContext());
             view.setId(writerid.get(position));
             view.setScore(score.get(position));
-            view.setScorestr(scorestr.get(position));
+            view.setScorestr(score.get(position));
             view.setContent(contents.get(position));
             return view;
         }

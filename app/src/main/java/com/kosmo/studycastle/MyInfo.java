@@ -63,7 +63,7 @@ public class MyInfo extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setIcon(android.R.drawable.ic_dialog_alert);
-        dialog.setTitle("학원정보 리스트 가져오기");
+        dialog.setTitle("회원정보 리스트 가져오기");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
         //붐메뉴적용
@@ -115,7 +115,11 @@ public class MyInfo extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppMyInfo.do"
+
+        String map = "/catle/AppMyInfo.do";
+        String url;
+        url = getString(R.string.http);
+        new AsyncHttpRequest().execute(url+map
                 ,"id="+idstr
         );
 

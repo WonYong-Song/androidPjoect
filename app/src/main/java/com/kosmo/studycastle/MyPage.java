@@ -90,8 +90,9 @@ public class MyPage extends AppCompatActivity {
                 else{
                     //로그인되어있을때
                     Intent intent = new Intent(v.getContext(),BuyList.class);
+                    //구매내역 페이지로 이동
                     intent.putExtra("id",id);
-
+                    startActivity(intent);
                 }
             }
         });
