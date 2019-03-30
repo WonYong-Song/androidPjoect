@@ -29,6 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="0dp"
+            android:text="전체"
             android:background="@drawable/all"
             />
         <Button
@@ -36,13 +38,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="0dp"
+            android:text="입시"
             android:background="@drawable/edu"/>
         <Button
             android:id="@+id/physical_education"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-
+            android:textSize="0dp"
+            android:text="예체능"
             android:background="@drawable/ye"
             />
         <Button
@@ -50,6 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="0dp"
+            android:text="기타"
             android:background="@drawable/other"/>
     </LinearLayout>
     <RelativeLayout
