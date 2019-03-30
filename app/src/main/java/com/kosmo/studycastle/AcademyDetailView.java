@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -123,7 +124,10 @@ public class AcademyDetailView extends AppCompatActivity  {
     //통신결과를 저장하기위한 변수선언e
     //전역변수 선언e
 
-
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +137,20 @@ public class AcademyDetailView extends AppCompatActivity  {
         context=this;
         geocoder = new Geocoder(this);
         mapView = findViewById(R.id.map_view);
+
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);

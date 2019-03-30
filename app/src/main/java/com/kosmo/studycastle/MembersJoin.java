@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,11 +14,14 @@ import android.text.Spannable;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +50,12 @@ public class MembersJoin extends AppCompatActivity {
     EditText id, pass, passcheck, name2, emailid, emaildomain, mobile1,mobile2,mobile3;
     CheckBox music, exercise, art, kor, eng, math, etc, checkbox1, checkbox2;
     TextView detail1, detail2, idresult, passresult;
+    ScrollView mother_scroll;
+
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +91,22 @@ public class MembersJoin extends AppCompatActivity {
         Spannable span2 = (Spannable)checkbox2.getText();
         span1.setSpan(new ForegroundColorSpan(Color.RED),6,10,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         span2.setSpan(new ForegroundColorSpan(Color.RED),14,18,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        //상단 그라데이션 처리
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
+
 
         //스피너 부착
         final Spinner domain = (Spinner)findViewById(R.id.domain);

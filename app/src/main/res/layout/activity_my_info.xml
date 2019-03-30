@@ -8,15 +8,31 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:src="@drawable/study_castle"
+            android:id="@+id/frontActivityBackground"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <TableRow>
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/my"/>
         <TextView
             android:id="@+id/name1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="30dp"/>
@@ -24,100 +40,132 @@
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="로그아웃 >"
+            android:text="로그아웃 >    "
             android:gravity="right"/>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        >
+        <TableRow
+            android:background="@drawable/mypageline"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=" 아이디"/>
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""/>
+        </TableRow>
+        <TableRow
+            android:background="@drawable/mypageline">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디"/>
-        <TextView
-            android:id="@+id/id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호"/>
+            android:textSize="16sp"
+            android:text=" 비밀번호"/>
         <TextView
             android:id="@+id/pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text=""/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </TableRow>
+        <TableRow
+            android:background="@drawable/mypageline">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이름"/>
+            android:textSize="16sp"
+            android:text=" 이름"/>
         <TextView
             android:id="@+id/name2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text=""/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </TableRow>
+        <TableRow
+            android:background="@drawable/mypageline">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이메일"/>
+            android:textSize="16sp"
+            android:text=" 이메일"/>
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text=""/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </TableRow>
+        <TableRow
+            android:background="@drawable/mypageline">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="휴대폰"/>
+            android:textSize="16sp"
+            android:text=" 휴대폰"/>
         <TextView
             android:id="@+id/mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text=""/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </TableRow>
+        <TableRow
+            android:background="@drawable/mypageline">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="관심사"/>
+            android:textSize="16sp"
+            android:text=" 관심사"/>
         <TextView
             android:id="@+id/interest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text=""/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </TableRow>
+        <TableRow
+            android:background="@drawable/mypageline"
+            >
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수정하기"
-            android:onClick="modify"/>
-    </LinearLayout>
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/bmb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:onClick="modify"
+            android:text="수정하기" />
+        </TableRow>
+    </TableLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80sp"
+        android:background="#273259"
+        >
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/bmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Copyright © StudyCastle 2019.\n All rights reserved."
+            />
+    </RelativeLayout>
 
 </LinearLayout>

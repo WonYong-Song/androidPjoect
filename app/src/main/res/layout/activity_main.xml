@@ -24,31 +24,33 @@
         android:padding="30dp"
         android:orientation="vertical"
         >
-
         <Button
             android:id="@+id/all"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="전체"/>
+            android:background="@drawable/all"
+            />
         <Button
             android:id="@+id/entrance_examination"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="입시"/>
+            android:background="@drawable/edu"/>
         <Button
             android:id="@+id/physical_education"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="예체능"/>
+
+            android:background="@drawable/ye"
+            />
         <Button
             android:id="@+id/etc"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="기타"/>
+            android:background="@drawable/other"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"

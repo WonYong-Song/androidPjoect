@@ -3,6 +3,7 @@ package com.kosmo.studycastle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,10 +27,30 @@ public class MyPage extends AppCompatActivity {
 
     String id;
 
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
+
+        //상단 그라데이션 처리
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
 
         final SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         String name = pref.getString("name","로그인해주세요");
