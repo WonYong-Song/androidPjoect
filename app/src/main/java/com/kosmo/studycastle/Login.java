@@ -104,7 +104,10 @@ public class Login extends AppCompatActivity {
         sid = tvID.getText().toString();
         spwd = tvPwd.getText().toString();
 
-        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppLoginAction.do"
+        String map = "/catle/AppLoginAction.do";
+        String url;
+        url = getString(R.string.http);
+        new AsyncHttpRequest().execute(url+map
                 ,"id="+sid
                 ,"pass="+spwd
         );

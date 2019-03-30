@@ -151,7 +151,10 @@ public class MyInfoModify extends AppCompatActivity {
 
         }
 
-        new AsyncHttpRequest().execute("http://192.168.0.24:8080/FinallyProject/catle/AppMyInfo.do"
+        String map = "/catle/AppMyInfo.do";
+        String url;
+        url = getString(R.string.http);
+        new AsyncHttpRequest().execute(url+map
                 ,"id="+idstr
         );
     }//onCreate
@@ -386,7 +389,10 @@ public class MyInfoModify extends AppCompatActivity {
 
             Log.i("ModifyInfo",object.toString());
 
-            new AsyncHttpModify().execute("http://192.168.0.24:8080/FinallyProject/catle/AppMyInfoModifyAction.do"
+            String map = "/catle/AppMyInfoModifyAction.do";
+            String url;
+            url = getString(R.string.http);
+            new AsyncHttpModify().execute(url+map
                     ,"info="+object.toString()
             );
 

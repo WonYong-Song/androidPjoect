@@ -180,7 +180,10 @@ public class MembersJoin extends AppCompatActivity {
                 }
                 else{
                     //통신하여 사용가능여부 확인
-                    new AsyncHttpRequest().execute("http://172.30.1.22:8080/FinallyProject/catle/AppLoginIDCheck.do"
+                    String map = "/catle/AppLoginIDCheck.do";
+                    String url;
+                    url = getString(R.string.http);
+                    new AsyncHttpRequest().execute(url+map
                             ,"id="+idstr
                     );
 
@@ -443,7 +446,10 @@ public class MembersJoin extends AppCompatActivity {
 
             Log.i("MemberJoinInfo",object.toString());
 
-            new AsyncHttpJoin().execute("http://172.30.1.22:8080/FinallyProject/catle/AppMemberJoinAction.do"
+            String map = "/catle/AppMemberJoinAction.do";
+            String url;
+            url = getString(R.string.http);
+            new AsyncHttpJoin().execute(url+map
                     ,"info="+object.toString()
             );
         }

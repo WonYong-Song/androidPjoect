@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:background="#273259"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#273259"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/study_castle"
+            />
+    </LinearLayout>
     <ScrollView
         android:id="@+id/mother_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         >
         <GridLayout
             android:layout_width="match_parent"
@@ -91,16 +106,42 @@
                 >
             </ListView>
 
+            <TextView android:text="리뷰 "
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:background="@drawable/line"/>
+            <ListView
+                android:layout_columnSpan="2"
+                android:layout_gravity="fill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/class_review"
+                >
+            </ListView>
 
 
 
 
         </GridLayout>
     </ScrollView>
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/bmb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#273259">
+
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/bmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Copyright © StudyCastle 2019.\n All rights reserved."
+            />
+    </LinearLayout>
 </LinearLayout>
