@@ -315,7 +315,8 @@
                 android:background="#fff"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:paddingTop="20dp">
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
                 <Button
                     android:id="@+id/modify"
@@ -332,13 +333,7 @@
         android:layout_width="match_parent"
         android:layout_height="80sp"
         android:background="#273259"
-
         >
-        <com.nightonke.boommenu.BoomMenuButton
-            android:id="@+id/bmb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -346,6 +341,11 @@
             android:gravity="center"
             android:textAlignment="center"
             android:text="Copyright © StudyCastle 2019.\n All rights reserved."
+            />
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/bmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
     </RelativeLayout>
 
