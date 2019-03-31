@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,10 +43,30 @@ public class MyInfo extends AppCompatActivity {
     TextView name1, id, pass, name2, email, mobile, logout, interest;
     String idstr;
 
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_info);
+
+        //상단 그라데이션 처리
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
 
         //메인 액티비티에서 전달한 부가데이터 읽어오기
         Intent intent = getIntent();

@@ -13,18 +13,21 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="아이디"/>
+            android:text=" 아이디"
+            android:textSize="16sp"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:id="@+id/id"
-            android:text="idtext"/>
+            android:textSize="16sp"
+            android:text=" idtext"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="별점"/>
+            android:text=" 별점"
+            android:textSize="16sp"/>
         <RatingBar
             android:id="@+id/score"
             android:layout_width="0dp"
@@ -50,12 +53,14 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="내용"/>
+            android:textSize="16sp"
+            android:text=" 내용"/>
         <TextView
             android:id="@+id/content"
             android:text="content"
             android:layout_width="0dp"
             android:layout_weight="6"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="16sp"/>
     </LinearLayout>
 </LinearLayout>
