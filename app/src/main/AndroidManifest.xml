@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BuyClassList"></activity>
+        <activity android:name=".ClassSchedule"></activity>
+        <activity android:name=".BuyClassList" />
         <activity android:name=".ReviewInfo" />
         <activity android:name=".BuyList" />
         <activity android:name=".MembersJoin" />

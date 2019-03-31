@@ -4,16 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -22,49 +16,25 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
-public class BuyList extends AppCompatActivity {
+public class ClassSchedule extends AppCompatActivity {
 
-    SharedPreferences.Editor editor;
+    ProgressDialog dialog;//대기시 프로그레스창
     BoomMenuButton bmb;
     Intent intent2;
-    ProgressDialog dialog;//대기시 프로그레스창
-    ListView buy_list;
-
-    //결과를 저장하기위한 Arraylist
-    ArrayList<String> startdate = new ArrayList<String>();
-    ArrayList<String> enddate = new ArrayList<String>();
-    ArrayList<String> day = new ArrayList<String>();
-    ArrayList<String> starttime = new ArrayList<String>();
-    ArrayList<String> endtime = new ArrayList<String>();
-    ArrayList<String> classname = new ArrayList<String>();
-    ArrayList<String> pay = new ArrayList<String>();
-    ArrayList<String> teaname = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buy_list);
+        setContentView(R.layout.activity_class_schedule);
 
         SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         String idstr = pref.getString("id","");
-
-        //ProgressDialog객체생성(서버 응답 대기용)
-        dialog = new ProgressDialog(this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setIcon(android.R.drawable.ic_dialog_alert);
-        dialog.setTitle("수강내역 가져오기");
-        dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);
@@ -106,7 +76,14 @@ public class BuyList extends AppCompatActivity {
 
         }
 
-        String map = "/catle/AppBuyClassList.do";
+        //ProgressDialog객체생성(서버 응답 대기용)
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setIcon(android.R.drawable.ic_dialog_alert);
+        dialog.setTitle("학원정보 리스트 가져오기");
+        dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
+
+        String map = "/catle/AppClassSchedule.do";
         String url;
         url = getString(R.string.http);
         new AsyncHttpRequest().execute(url+map
@@ -115,8 +92,7 @@ public class BuyList extends AppCompatActivity {
 
     }//onCreate
 
-    class AsyncHttpRequest extends AsyncTask<String,Void,String> {
-
+    class AsyncHttpRequest extends AsyncTask<String,Void,String>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -128,6 +104,7 @@ public class BuyList extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+
             //파라미터확인용
             for(String s : params){
                 Log.i("AsycnTask Class","파라미터:"+s);
@@ -179,32 +156,7 @@ public class BuyList extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            //JSONArray파싱하기
-            try{
-                Log.i("KOSMO",sBuffer.toString());
-
-                JSONArray jsonArray = new JSONArray(sBuffer.toString());
-
-                sBuffer.setLength(0);//sBuffer초기화
-                for(int i=0 ; i<jsonArray.length() ; i++){
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    startdate.add(jsonObject.getString("startdate"));
-                    enddate.add(jsonObject.getString("enddate"));
-                    day.add(jsonObject.getString("day"));
-                    starttime.add(jsonObject.getString("starttime"));
-                    endtime.add(jsonObject.getString("endtime"));
-                    classname.add(jsonObject.getString("classname"));
-                    pay.add(jsonObject.getString("pay"));
-                    teaname.add(jsonObject.getString("teaname"));
-
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-
-            return sBuffer.toString();
+            return null;
         }
 
         @Override
@@ -212,38 +164,6 @@ public class BuyList extends AppCompatActivity {
             super.onPostExecute(s);
             //진행대화창 닫기
             dialog.dismiss();
-
-            Buyclass buyclass = new Buyclass();
-            buy_list = (ListView)findViewById(R.id.buy_list);
-            buy_list.setAdapter(buyclass);
-        }
-    }
-
-    class Buyclass extends BaseAdapter{
-        @Override
-        public int getCount() {
-            return classname.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return classname.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            BuyClassList view = new BuyClassList(getApplicationContext());
-            view.setTeaname(teaname.get(position));
-            view.setPay(pay.get(position)+"원");
-            view.setClass_date(startdate.get(position)+"~"+enddate.get(position)+" 매주 "+day.get(position));
-            view.setClass_time(starttime.get(position)+"~"+endtime.get(position));
-            view.setClass_name(classname.get(position));
-            return view;
         }
     }
 }
