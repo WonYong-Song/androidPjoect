@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ClassSchedule"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#273259">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65sp"
@@ -17,187 +18,267 @@
             android:id="@+id/frontActivityBackground"
             />
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="시간표"/>
-    <TableLayout
-        android:id="@+id/class_schedule"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="#fff"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="시간표"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15"
-        android:orientation="vertical">
-        <TableRow>
-            <TextView android:text="요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text="시간"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text="강좌명"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text="학원명"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="월요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/montime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/monclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/monname"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="화요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/tuetime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/tueclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/tuename"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="수요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/wedtime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/wedclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/wedname"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="목요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/thutime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/thuclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/thuname"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="금요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/fritime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/friclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/friname"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="토요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/sattime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/satclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/satname"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="일요일"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/suntime"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/sunclassname"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content"/>
-            <TextView android:text=""
-                android:id="@+id/sunname"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-    </TableLayout>
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="#fff">
+        <TableLayout
+            android:id="@+id/class_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:orientation="vertical">
+            <TableRow
+                android:background="@drawable/line2"
+                android:layout_marginBottom="1dp"
+                >
+                <TextView android:text="요일"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/line4"/>
+                <TextView android:text="시간"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/line4"
+                    android:gravity="center"/>
+                <TextView android:text="강좌명"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/line4"/>
+                <TextView android:text="학원명"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/line4"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="월요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/montime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/monclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/monname"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="화요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/tuetime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/tueclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/tuename"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="수요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/wedtime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/wedclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/wedname"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="목요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/thutime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/thuclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/thuname"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="금요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/fritime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/friclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/friname"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="토요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/sattime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/satclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/satname"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+            <TableRow android:layout_marginBottom="1dp">
+                <TextView android:text="일요일"
+                    android:textStyle="bold"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/line9"/>
+                <TextView android:text=""
+                    android:id="@+id/suntime"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/sunclassname"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+                <TextView android:text=""
+                    android:id="@+id/sunname"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line8"/>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80sp"
         android:background="#273259"
+        android:layout_gravity="bottom"
         >
         <com.nightonke.boommenu.BoomMenuButton
             android:id="@+id/bmb"

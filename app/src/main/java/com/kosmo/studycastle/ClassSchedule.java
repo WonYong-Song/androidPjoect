@@ -385,5 +385,6 @@ public class ClassSchedule extends AppCompatActivity {
             satclassname.setText(satclassnamestr);
             sunclassname.setText(sunclassnamestr);
         }
+
     }
 }
