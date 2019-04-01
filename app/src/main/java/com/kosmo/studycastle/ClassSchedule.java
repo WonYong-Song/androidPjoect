@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -15,6 +16,9 @@ import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,6 +32,31 @@ public class ClassSchedule extends AppCompatActivity {
     BoomMenuButton bmb;
     Intent intent2;
 
+    TextView montime, monname, tuetime, tuename, wedtime, wedname, thutime, thuname,
+            fritime, friname, sattime, satname, suntime, sunname, monclassname, tueclassname,
+            wedclassname, thuclassname, friclassname, satclassname, sunclassname;
+    String montimestr = "";
+    String monnamestr = "";
+    String tuetimestr = "";
+    String tuenamestr = "";
+    String wedtimestr = "";
+    String wednamestr = "";
+    String thutimestr = "";
+    String thunamestr = "";
+    String fritimestr = "";
+    String frinamestr = "";
+    String sattimestr = "";
+    String satnamestr = "";
+    String suntimestr = "";
+    String sunnamestr = "";
+    String monclassnamestr = "";
+    String tueclassnamestr = "";
+    String wedclassnamestr = "";
+    String thuclassnamestr = "";
+    String friclassnamestr = "";
+    String satclassnamestr = "";
+    String sunclassnamestr = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +64,28 @@ public class ClassSchedule extends AppCompatActivity {
 
         SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         String idstr = pref.getString("id","");
+
+        montime = (TextView)findViewById(R.id.montime);
+        monname = (TextView)findViewById(R.id.monname);
+        tuetime = (TextView)findViewById(R.id.tuetime);
+        tuename = (TextView)findViewById(R.id.tuename);
+        wedtime = (TextView)findViewById(R.id.wedtime);
+        wedname = (TextView)findViewById(R.id.wedname);
+        thutime = (TextView)findViewById(R.id.thutime);
+        thuname = (TextView)findViewById(R.id.thuname);
+        fritime = (TextView)findViewById(R.id.fritime);
+        friname = (TextView)findViewById(R.id.friname);
+        sattime = (TextView)findViewById(R.id.sattime);
+        satname = (TextView)findViewById(R.id.satname);
+        suntime = (TextView)findViewById(R.id.suntime);
+        sunname = (TextView)findViewById(R.id.sunname);
+        monclassname = (TextView)findViewById(R.id.monclassname);
+        tueclassname = (TextView)findViewById(R.id.tueclassname);
+        wedclassname = (TextView)findViewById(R.id.wedclassname);
+        thuclassname = (TextView)findViewById(R.id.thuclassname);
+        friclassname = (TextView)findViewById(R.id.friclassname);
+        satclassname = (TextView)findViewById(R.id.satclassname);
+        sunclassname = (TextView)findViewById(R.id.sunclassname);
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);
@@ -156,7 +207,133 @@ public class ClassSchedule extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return null;
+            //JSONObject 파싱하기
+            try{
+                Log.i("KOSMO",sBuffer.toString());
+
+                JSONObject jsonObject = new JSONObject(sBuffer.toString());
+
+                sBuffer.setLength(0);//sBuffer초기화
+
+                //월요일 정보 가져오기
+                JSONArray array1 = jsonObject.getJSONArray("월요일");
+                for(int i=0 ; i<array1.length() ; i++){
+                    JSONObject object = array1.getJSONObject(i);
+                    if(i==array1.length()-1){
+                        montimestr  += object.getString("starttime")+"~"+object.getString("endtime");
+                        monnamestr += object.getString("acaname");
+                        monclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        montimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        monnamestr += object.getString("acaname")+"\n";
+                        monclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+                //화요일 정보 가져오기
+                JSONArray array2 = jsonObject.getJSONArray("화요일");
+                for(int i=0 ; i<array2.length() ; i++){
+                    JSONObject object = array2.getJSONObject(i);
+                    if(i==array2.length()-1){
+                        tuetimestr += object.getString("starttime")+"~"+object.getString("endtime");
+                        tuenamestr += object.getString("acaname");
+                        tueclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        tuetimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        tuenamestr += object.getString("acaname")+"\n";
+                        tueclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+                //수요일 정보 가져오기
+                JSONArray array3 = jsonObject.getJSONArray("수요일");
+                for(int i=0 ; i<array3.length() ; i++){
+                    JSONObject object = array3.getJSONObject(i);
+                    if(i==array3.length()-1){
+                        wedtimestr  += object.getString("starttime")+"~"+object.getString("endtime");
+                        wednamestr += object.getString("acaname");
+                        wedclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        wedtimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        wednamestr += object.getString("acaname")+"\n";
+                        wedclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+                //목요일 정보 가져오기
+                JSONArray array4 = jsonObject.getJSONArray("목요일");
+                for(int i=0 ; i<array4.length() ; i++){
+                    JSONObject object = array4.getJSONObject(i);
+                    if(i==array4.length()-1){
+                        thutimestr  += object.getString("starttime")+"~"+object.getString("endtime");
+                        thunamestr += object.getString("acaname");
+                        thuclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        thutimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        thunamestr += object.getString("acaname")+"\n";
+                        thuclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+                //금요일 정보 가져오기
+                JSONArray array5 = jsonObject.getJSONArray("금요일");
+                for(int i=0 ; i<array5.length() ; i++){
+                    JSONObject object = array5.getJSONObject(i);
+                    if(i==array5.length()-1){
+                        fritimestr  += object.getString("starttime")+"~"+object.getString("endtime");
+                        frinamestr += object.getString("acaname");
+                        friclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        fritimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        frinamestr += object.getString("acaname")+"\n";
+                        friclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+                //토요일 정보 가져오기
+                JSONArray array6 = jsonObject.getJSONArray("토요일");
+                for(int i=0 ; i<array6.length() ; i++){
+                    JSONObject object = array6.getJSONObject(i);
+                    if(i==array6.length()-1){
+                        sattimestr  += object.getString("starttime")+"~"+object.getString("endtime");
+                        satnamestr += object.getString("acaname");
+                        satclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        sattimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        satnamestr += object.getString("acaname")+"\n";
+                        satclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+                //일요일 정보 가져오기
+                JSONArray array7 = jsonObject.getJSONArray("일요일");
+                for(int i=0 ; i<array7.length() ; i++){
+                    JSONObject object = array7.getJSONObject(i);
+                    if(i==array7.length()-1){
+                        suntimestr  += object.getString("starttime")+"~"+object.getString("endtime");
+                        sunnamestr += object.getString("acaname");
+                        sunclassnamestr += object.getString("classname");
+                    }
+                    else{
+                        suntimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
+                        sunnamestr += object.getString("acaname")+"\n";
+                        sunclassnamestr += object.getString("classname")+"\n";
+                    }
+
+                }
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return sBuffer.toString();
         }
 
         @Override
@@ -164,6 +341,28 @@ public class ClassSchedule extends AppCompatActivity {
             super.onPostExecute(s);
             //진행대화창 닫기
             dialog.dismiss();
+
+            montime.setText(montimestr);
+            monname.setText(monnamestr);
+            tuetime.setText(tuetimestr);
+            tuename.setText(tuenamestr);
+            wedtime.setText(wedtimestr);
+            wedname.setText(wednamestr);
+            thutime.setText(thutimestr);
+            thuname.setText(thunamestr);
+            fritime.setText(fritimestr);
+            friname.setText(frinamestr);
+            sattime.setText(sattimestr);
+            satname.setText(satnamestr);
+            suntime.setText(suntimestr);
+            sunname.setText(sunnamestr);
+            monclassname.setText(monclassnamestr);
+            tueclassname.setText(tueclassnamestr);
+            wedclassname.setText(wedclassnamestr);
+            thuclassname.setText(thuclassnamestr);
+            friclassname.setText(friclassnamestr);
+            satclassname.setText(satclassnamestr);
+            sunclassname.setText(sunclassnamestr);
         }
     }
 }
