@@ -12,21 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviewInfo"></activity>
+        <activity android:name=".ClassSchedule"></activity>
+        <activity android:name=".BuyClassList" />
+        <activity android:name=".ReviewInfo" />
         <activity android:name=".BuyList" />
-        <activity android:name=".MembersJoin" />
+        <activity android:name=".MembersJoin" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".MyInfoModifyAction" />
-        <activity android:name=".MyInfoModify" />
+        <activity android:name=".MyInfoModify" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".MyInfo" />
         <activity android:name=".MyPage" />
-        <activity android:name=".Login" /> <!-- 네이버 지도 사용을 위한 추가부분분 -->
+        <activity android:name=".Login" android:windowSoftInputMode="adjustPan"/> <!-- 네이버 지도 사용을 위한 추가부분분 -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="wkmdhenf78" />
 
         <activity android:name=".ClassDetailInfo" />
         <activity android:name=".AcademyDetailView" />
-        <activity android:name=".AcademyList" android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".AcademyList"
+            android:windowSoftInputMode="adjustPan" />
         <!--
             .MainActivity의 하위 엘리먼트인 <intent-filter>
             부분을 .Intro하위로 이동한다.

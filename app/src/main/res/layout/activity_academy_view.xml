@@ -9,38 +9,53 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:id="@+id/aca_image"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:background="@drawable/line"/>
     <TableLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="8"
         android:stretchColumns="1,3"
         android:background="@drawable/line">
-        <TableRow>
-            <TextView android:text="분류"
-                android:background="@drawable/line"/>
+        <TableRow
+            android:background="@drawable/acaview_line">
+            <TextView
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:text="분류"
+                android:background="@drawable/acaview_line2"
+                />
             <TextView
                 android:id="@+id/category"
                 android:layout_span="3"
-                android:background="@drawable/line"/>
+                android:textSize="16dp"/>
         </TableRow>
-        <TableRow>
-            <TextView android:text="학원명"
-                android:background="@drawable/line"/>
+        <TableRow
+            android:background="@drawable/line5">
+            <TextView android:text="  학원명  "
+                android:textAlignment="center"
+                android:background="@drawable/acaview_line3"
+                android:textSize="16dp"/>
             <TextView android:id="@+id/aca_name"
-                android:background="@drawable/line"/>
-            <TextView android:text="평점"
-                android:background="@drawable/line"/>
+                android:background="@drawable/line6"
+                android:textSize="16dp"/>
+            <TextView android:text="  평점  "
+                android:textAlignment="center"
+                android:background="@drawable/line6"
+                android:textSize="16dp"/>
             <TextView android:id="@+id/score"
-                android:background="@drawable/line"/>
+                android:background="@drawable/acaview_line4"
+                android:textSize="16dp"/>
         </TableRow>
-        <TableRow>
+        <TableRow
+            android:background="@drawable/line5">
             <TextView android:text="주소"
-                android:background="@drawable/line"/>
+                android:textAlignment="center"
+                android:background="@drawable/acaview_line3"/>
             <TextView
                 android:id="@+id/address"
                 android:layout_span="3"
-                android:background="@drawable/line"
+                android:background="@drawable/line6"
                 android:maxLines="1"
                 android:ellipsize="end"/>
         </TableRow>

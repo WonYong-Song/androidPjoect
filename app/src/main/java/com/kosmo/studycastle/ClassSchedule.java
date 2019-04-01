@@ -4,18 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -24,69 +16,25 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MyInfo extends AppCompatActivity {
+public class ClassSchedule extends AppCompatActivity {
 
-    SharedPreferences.Editor editor;
     ProgressDialog dialog;//대기시 프로그레스창
     BoomMenuButton bmb;
     Intent intent2;
-    TextView name1, id, pass, name2, email, mobile, logout, interest;
-    String idstr;
-
-    //상단 그라데이션
-    ImageView frontActivityBackground = null;
-    ImageView uzb = null;
-    AnimationDrawable frameAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_info);
-
-        //상단 그라데이션 처리
-        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
-        frontActivityBackground.setBackgroundResource(R.drawable.transition);
-
-        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
-        frameAnimation .setEnterFadeDuration(1000);
-        frameAnimation .setExitFadeDuration(1000);
-
-
-        frontActivityBackground.postDelayed(new Runnable() {
-            public void run() {
-                frameAnimation.start();
-            }
-        }, 200);
-
-        //메인 액티비티에서 전달한 부가데이터 읽어오기
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-        idstr = (bundle.getString("id"))==null ? "" : bundle.getString("id");
+        setContentView(R.layout.activity_class_schedule);
 
         SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
-        editor = pref.edit();
-
-        logout = (TextView)findViewById(R.id.logout);
-        String logoutstr = logout.getText().toString();
-        logout.setText(Html.fromHtml("<u>" + logoutstr + "</u>"));
-
-        //ProgressDialog객체생성(서버 응답 대기용)
-        dialog = new ProgressDialog(this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setIcon(android.R.drawable.ic_dialog_alert);
-        dialog.setTitle("회원정보 리스트 가져오기");
-        dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
+        String idstr = pref.getString("id","");
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);
@@ -128,17 +76,14 @@ public class MyInfo extends AppCompatActivity {
 
         }
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.clear();
-                editor.commit();
-                Intent intent1 = new Intent(v.getContext(),MyPage.class);
-                startActivity(intent1);
-            }
-        });
+        //ProgressDialog객체생성(서버 응답 대기용)
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setIcon(android.R.drawable.ic_dialog_alert);
+        dialog.setTitle("학원정보 리스트 가져오기");
+        dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
-        String map = "/catle/AppMyInfo.do";
+        String map = "/catle/AppClassSchedule.do";
         String url;
         url = getString(R.string.http);
         new AsyncHttpRequest().execute(url+map
@@ -147,7 +92,7 @@ public class MyInfo extends AppCompatActivity {
 
     }//onCreate
 
-    class AsyncHttpRequest extends AsyncTask<String,Void,String> {
+    class AsyncHttpRequest extends AsyncTask<String,Void,String>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -159,6 +104,7 @@ public class MyInfo extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+
             //파라미터확인용
             for(String s : params){
                 Log.i("AsycnTask Class","파라미터:"+s);
@@ -210,11 +156,7 @@ public class MyInfo extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-
-
-
-            return sBuffer.toString();
+            return null;
         }
 
         @Override
@@ -222,43 +164,6 @@ public class MyInfo extends AppCompatActivity {
             super.onPostExecute(s);
             //진행대화창 닫기
             dialog.dismiss();
-
-            name1 = (TextView)findViewById(R.id.name1);
-            id = (TextView)findViewById(R.id.id);
-            pass = (TextView)findViewById(R.id.pass);
-            name2 = (TextView)findViewById(R.id.name2);
-            email = (TextView)findViewById(R.id.email);
-            mobile = (TextView)findViewById(R.id.mobile);
-            interest = (TextView)findViewById(R.id.interest);
-
-            //JSONArray파싱하기
-            try{
-                Log.i("KOSMO",s);
-                //결과(문자를)를 JSONObject 객체로 변형
-                JSONObject jsonObject = new JSONObject(s);
-
-                name1.setText(jsonObject.getString("name"));
-                name2.setText(jsonObject.getString("name"));
-                id.setText(jsonObject.getString("id"));
-                pass.setText(jsonObject.getString("pass"));
-                email.setText(jsonObject.getString("emailid")+"@"+jsonObject.getString("emaildomain"));
-                mobile.setText(jsonObject.getString("mobile1")+"-"+jsonObject.getString("mobile2")+"-"+jsonObject.getString("mobile3"));
-                interest.setText(jsonObject.getString("interest"));
-
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-
-
         }
-
     }
-    public void modify(View v){
-        Intent intent = new Intent(v.getContext(),MyInfoModify.class);
-        intent.putExtra("id",idstr);
-        startActivity(intent);
-    }
-
-
 }
