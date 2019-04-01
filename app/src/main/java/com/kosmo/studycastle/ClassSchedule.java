@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -28,10 +30,29 @@ public class ClassSchedule extends AppCompatActivity {
     BoomMenuButton bmb;
     Intent intent2;
 
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_schedule);
+
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
 
         SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         String idstr = pref.getString("id","");

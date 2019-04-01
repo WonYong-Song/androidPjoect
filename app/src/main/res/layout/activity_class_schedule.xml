@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ClassSchedule"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:background="#273259">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/study_castle"
+            android:id="@+id/frontActivityBackground"
+            />
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="등록한 수강내역"/>
+        android:text="시간표"/>
     <ListView
         android:id="@+id/class_schedule"
         android:layout_width="match_parent"
@@ -19,16 +30,24 @@
         android:orientation="vertical">
 
     </ListView>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:gravity="bottom">
+        android:layout_height="80sp"
+        android:background="#273259"
+        >
         <com.nightonke.boommenu.BoomMenuButton
             android:id="@+id/bmb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Copyright © StudyCastle 2019.\n All rights reserved."
+            />
+    </RelativeLayout>
 
 </LinearLayout>
