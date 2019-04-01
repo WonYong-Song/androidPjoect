@@ -389,6 +389,6 @@
         \'정보통신망 이용촉진 및 정보보호 등에 관한 법률\'의 거래기록 보존 의무에 따른 보존: 1년
     </string>
     <string name="http">
-        http://121.190.179.80:8080/FinallyProject
+        http://192.168.0.31:8080/FinallyProject
     </string>
 </resources>

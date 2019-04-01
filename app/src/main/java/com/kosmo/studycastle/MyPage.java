@@ -131,6 +131,8 @@ public class MyPage extends AppCompatActivity {
                 }
                 else{
                     //로그인되어있을때
+                    Intent intent = new Intent(v.getContext(),ClassSchedule.class);
+                    startActivity(intent);
                 }
             }
         });
