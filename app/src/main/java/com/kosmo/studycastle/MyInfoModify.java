@@ -2,15 +2,19 @@ package com.kosmo.studycastle;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,13 +45,32 @@ public class MyInfoModify extends AppCompatActivity {
     TextView id;
     EditText pass, name2, emailid, emaildomain,mobile1,mobile2,mobile3,passcheck;
     CheckBox music, exercise, art, kor, eng, math, etc;
-
+    ScrollView mother_scroll;
     String idstr;
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_info_modify);
+
+        //상단 그라데이션 처리
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
 
         //위젯가져오기
         id = (TextView)findViewById(R.id.id);
@@ -73,6 +96,58 @@ public class MyInfoModify extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         idstr = (bundle.getString("id"))==null ? "" : bundle.getString("id");
         Log.i("Intent",idstr);
+
+        //스크롤뷰
+        mother_scroll = (ScrollView)findViewById(R.id.mother_scroll);
+
+        id.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    mother_scroll.requestDisallowInterceptTouchEvent(false);
+                }
+                else{
+                    mother_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+        math.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    mother_scroll.requestDisallowInterceptTouchEvent(false);
+                }
+                else{
+                    mother_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+        exercise.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    mother_scroll.requestDisallowInterceptTouchEvent(false);
+                }
+                else{
+                    mother_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+        art.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    mother_scroll.requestDisallowInterceptTouchEvent(false);
+                }
+                else{
+                    mother_scroll.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
 
         //스피너 부착
         final Spinner domain = (Spinner)findViewById(R.id.domain);
@@ -108,7 +183,7 @@ public class MyInfoModify extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setIcon(android.R.drawable.ic_dialog_alert);
-        dialog.setTitle("학원정보 리스트 가져오기");
+        dialog.setTitle("서버통신중");
         dialog.setMessage("서버로부터 응답을 기다리고있습니다.");
 
         //붐메뉴적용

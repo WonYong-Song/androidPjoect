@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,72 +8,95 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TableRow>
-            <TextView android:text="강의명"
-                android:layout_width="0sp"
-                android:layout_weight="1"
-                android:background="@drawable/line"/>
-            <TextView android:text="강사명"
-                android:layout_width="0sp"
-                android:layout_weight="1"
-                android:background="@drawable/line"/>
-        </TableRow>
-        <TableRow>
+        <TableRow
+            android:background="@drawable/line2">
+            <TextView
+                android:textSize="16sp"
+                android:text="강 의 명"
+                android:textAlignment="center"
+                android:layout_width="60sp"
+                android:background="@drawable/line4"
+               />
             <TextView android:id="@+id/class_name"
+                android:textSize="16sp"
                 android:layout_width="0sp"
                 android:layout_weight="1"
-                android:background="@drawable/line"/>
-            <TextView android:id="@+id/tea_name"
-                android:layout_width="0sp"
-                android:layout_weight="1"
-                android:background="@drawable/line"/>
+                />
         </TableRow>
-        <TableRow>
-            <TextView android:text="강의기간"
+        <TableRow
+            android:background="@drawable/line5">
+
+            <TextView
+                android:textSize="16sp"
+                android:text="강 사 명"
+                android:textAlignment="center"
+                android:layout_width="60sp"
+                android:background="@drawable/line6"
+                />
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/tea_name"
                 android:layout_width="0sp"
                 android:layout_weight="1"
-                android:background="@drawable/line"/>
-            <TextView android:text="강의시간"
-                android:layout_width="0sp"
-                android:layout_weight="1"
-                android:background="@drawable/line"/>
+                />
         </TableRow>
-        <TableRow>
+        <TableRow
+            android:background="@drawable/line5">
+            <TextView android:text=" 강의기간"
+                android:textSize="16sp"
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:background="@drawable/line6"/>
+            <TextView android:text=" 강의시간"
+                android:textSize="16sp"
+                android:layout_width="0sp"
+                android:layout_weight="1" />
+        </TableRow>
+        <TableRow
+            android:background="@drawable/line5">
             <TextView android:id="@+id/class_time"
                 android:layout_width="0sp"
                 android:layout_weight="1"
-                android:background="@drawable/line"/>
+                android:background="@drawable/line6"/>
             <TextView android:id="@+id/class_term"
                 android:layout_width="0sp"
                 android:layout_weight="1"
-                android:background="@drawable/line"/>
+               />
 
         </TableRow>
-        <TableRow>
-            <TextView android:text="수강료"
+        <TableRow
+            android:background="@drawable/line5">
+            <TextView
+                android:textSize="16sp"
+                android:text=" 수강료"
                 android:layout_width="0sp"
                 android:layout_weight="1"
-                android:background="@drawable/line"/>
-            <TextView android:text="수강인원"
+                android:background="@drawable/line6"/>
+            <TextView
+                android:textSize="16sp"
+                android:text=" 수강인원"
                 android:layout_width="0sp"
                 android:layout_weight="1"
-                android:background="@drawable/line"/>
-            <TextView android:text="결제"
+                android:background="@drawable/line6"/>
+            <TextView
+                android:textSize="16sp"
+                android:text=" 결제"
                 android:layout_width="0sp"
-                android:layout_weight="1"
-                android:background="@drawable/line"/>
+                android:layout_weight="1" />
         </TableRow>
         <TableRow>
             <TextView android:id="@+id/class_pay"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line6"/>
             <TextView android:id="@+id/class_personnel"
                 android:layout_width="0sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/line6"/>
             <TextView android:text="결제버튼"
                 android:layout_width="0sp"
                 android:layout_weight="1"/>
         </TableRow>
     </TableLayout>
 
-</LinearLayout>
+</GridLayout>

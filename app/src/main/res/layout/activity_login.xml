@@ -3,65 +3,135 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="아이디" />
-        <EditText
-            android:id="@+id/etID"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content" >
-            <requestFocus />
-        </EditText>
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:scaleX="1.5"
+            android:scaleY="2"
+            android:src="@drawable/study_castle"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tvWelcome"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="비밀번호" />
-        <EditText
-            android:id="@+id/etPwd"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:paddingBottom="15sp">
+            <TableRow
+                android:background="@drawable/mypageline">
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:text="아이디" />
+                <EditText
+                    android:id="@+id/etID"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content" >
+                    <requestFocus />
+                </EditText>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <Button
-            android:id="@+id/joinMembers"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnMemberJoin"
-            android:text="회원가입"/>
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="btnLoginClicked"
-            android:text="로그인" />
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:paddingBottom="20sp"
+            >
+            <TableRow
+                android:background="@drawable/mypageline">
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:text="비밀번호" />
+            <EditText
+                android:id="@+id/etPwd"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
-
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/bmb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:paddingBottom="20sp"
+            >
+            <TableRow
+                android:background="@drawable/loginpageline">
+             <TextView android:layout_width="0sp"
+                 android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#1DA362"
+                android:onClick="btnLoginClicked"
+                android:textSize="17sp"
+                android:text="로그인" />
+            <Button
+                android:id="@+id/joinMembers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="btnMemberJoin"
+                android:backgroundTint="#FFD04C"
+                android:textSize="17sp"
+                android:text="회원가입"/>
+                <TextView android:layout_width="0sp"
+                    android:layout_weight="1"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80sp"
+        android:background="#273259"
+        >
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/bmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Copyright © StudyCastle 2019.\n All rights reserved."
+            />
+    </RelativeLayout>
 
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -116,14 +117,17 @@ public class AcademyDetailView extends AppCompatActivity  {
     //리뷰정보
     ArrayList<String> writerid = new ArrayList<String>();
     ArrayList<String> score = new ArrayList<String>();
-    ArrayList<String> scorestr = new ArrayList<String>();
+    ArrayList<String> writetime = new ArrayList<String>();
     ArrayList<String> contents = new ArrayList<String>();
 
 
     //통신결과를 저장하기위한 변수선언e
     //전역변수 선언e
 
-
+    //상단 그라데이션
+    ImageView frontActivityBackground = null;
+    ImageView uzb = null;
+    AnimationDrawable frameAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +137,20 @@ public class AcademyDetailView extends AppCompatActivity  {
         context=this;
         geocoder = new Geocoder(this);
         mapView = findViewById(R.id.map_view);
+
+        frontActivityBackground = (ImageView)findViewById(R.id.frontActivityBackground);
+        frontActivityBackground.setBackgroundResource(R.drawable.transition);
+
+        frameAnimation = (AnimationDrawable) frontActivityBackground.getBackground();
+        frameAnimation .setEnterFadeDuration(1000);
+        frameAnimation .setExitFadeDuration(1000);
+
+
+        frontActivityBackground.postDelayed(new Runnable() {
+            public void run() {
+                frameAnimation.start();
+            }
+        }, 200);
 
         //붐메뉴적용
         bmb = (BoomMenuButton)findViewById(R.id.bmb);
@@ -498,12 +516,12 @@ public class AcademyDetailView extends AppCompatActivity  {
                     JSONObject object4 = result4.getJSONObject(i);
                     writerid.add(object4.getString("id"));
                     score.add(object4.getString("score"));
-                    scorestr.add(object4.getString("reviewcontents"));
-                    contents.add(object4.getString("writetime"));
+                    contents.add(object4.getString("reviewcontents"));
+                    writetime.add(object4.getString("writetime"));
                 }
 
             }
-           catch (Exception e){
+            catch (Exception e){
                 e.printStackTrace();
             }
 
@@ -606,7 +624,7 @@ public class AcademyDetailView extends AppCompatActivity  {
             ReviewInfo view = new ReviewInfo(getApplicationContext());
             view.setId(writerid.get(position));
             view.setScore(score.get(position));
-            view.setScorestr(scorestr.get(position));
+            view.setScorestr(score.get(position));
             view.setContent(contents.get(position));
             return view;
         }

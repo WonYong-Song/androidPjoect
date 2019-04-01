@@ -1,118 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:background="#273259"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#273259"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/study_castle"
+            android:id="@+id/frontActivityBackground"
+            />
+    </LinearLayout>
     <ScrollView
         android:id="@+id/mother_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        >
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/line"
             android:columnCount="2"
-            android:orientation="horizontal"
-            android:background="@drawable/line">
-
-            <ImageView android:id="@+id/aca_image"
-                android:scaleType="fitCenter"
-                android:src="@drawable/study_castle"
+            android:orientation="horizontal">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_columnSpan="2">
+            <ImageView
+                android:id="@+id/aca_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:layout_columnSpan="2"
                 android:layout_gravity="fill"
-                android:layout_height="200dp"
-                android:layout_width="match_parent"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/study_castle" />
+        </GridLayout>
 
-            <TextView android:text="카테고리 "
-                android:background="@drawable/line"/>
-            <TextView android:id="@+id/category"
-                android:background="@drawable/line"/>
-
-            <TextView android:text="캐슬명     "
-                android:background="@drawable/line"/>
-            <TextView android:id="@+id/aca_name"
-                android:background="@drawable/line"/>
-
-            <TextView android:text="캐슬번호 "
-                android:background="@drawable/line"/>
-            <TextView android:id="@+id/telephone"
-                android:background="@drawable/line"/>
-
-            <TextView android:text="캐슬주소 "
-                android:background="@drawable/line"/>
-            <TextView android:id="@+id/address"
-                android:background="@drawable/line"/>
-
-            <TextView android:text="캐슬소개 "
-                android:background="@drawable/line"/>
-            <TextView android:id="@+id/introduce"
-                android:background="@drawable/line"/>
-
-            <TextView android:text="강사진"
-                android:layout_columnSpan="2"
+            <TextView
                 android:layout_width="match_parent"
-                android:background="@drawable/line"/>
+                android:layout_columnSpan="2"
+                android:background="@drawable/line3"
+                android:textSize="20sp"
+                android:text="◈학원정보"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:textSize="16sp"
+                android:text=" 카테고리  " />
+
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/category"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:textSize="16sp"
+                android:text=" 캐슬명     " />
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/aca_name" />
+            <TextView
+                android:textSize="16sp"
+                android:text=" 캐슬번호 " />
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/telephone" />
+            <TextView
+                android:textSize="16sp"
+                android:text=" 캐슬주소 " />
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/address" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:background="@drawable/line3"
+                android:textSize="20sp"
+                android:text="◈캐슬소개 "
+                android:textColor="#fff"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/introduce"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:background="@drawable/line3"
+                android:textSize="20sp"
+                android:text="◈강사진"
+                android:textColor="#fff"
+                android:textStyle="bold"/>
 
             <GridView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:numColumns="4"
-                android:gravity="center"
                 android:id="@+id/teacher_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:gravity="center"
+                android:numColumns="3"></GridView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_columnSpan="2"
+                android:background="@drawable/line3"
+                android:textSize="20sp"
+                android:text="◈오시는길"
+                android:textColor="#fff"
+                android:textStyle="bold"/>
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_columnSpan="2">
-            </GridView>
-
-            <TextView android:text="오시는길"
+                <!--네이버 지도를 이용하기 위한 맵뷰 사용-->
+                <com.naver.maps.map.MapView
+                    android:id="@+id/map_view"
+                    android:layout_height="200dp"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill" />
+            </GridLayout>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_columnSpan="2"
-                android:background="@drawable/line"/>
-
-            <!--네이버 지도를 이용하기 위한 맵뷰 사용-->
-            <com.naver.maps.map.MapView
-                android:id="@+id/map_view"
-                android:layout_gravity="fill"
-                android:layout_height="200dp"
-                android:layout_columnSpan="2"/>
-
-            <TextView android:text="수강신청 "
+                android:background="@drawable/line3"
+                android:textSize="20sp"
+                android:text="◈수강신청 "
+                android:textColor="#fff"
+                android:textStyle="bold"/>
+            <GridLayout
+             android:layout_width="match_parent"
+             android:layout_columnSpan="2">
+                <ListView
+                    android:id="@+id/class_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"></ListView>
+            </GridLayout>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_columnSpan="2"
-                android:background="@drawable/line"/>
-
-            <ListView
-                android:layout_columnSpan="2"
-                android:layout_gravity="fill"
+                android:background="@drawable/line3"
+                android:textSize="20sp"
+                android:text="◈리뷰 "
+                android:textColor="#fff"
+                android:textStyle="bold"/>
+            <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/class_info"
-                >
-            </ListView>
-
-            <TextView android:text="리뷰 "
-                android:layout_width="match_parent"
-                android:layout_columnSpan="2"
-                android:background="@drawable/line"/>
-            <ListView
-                android:layout_columnSpan="2"
-                android:layout_gravity="fill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/class_review"
-                >
-            </ListView>
-
-
-
-
+                android:layout_columnSpan="2">
+                <ListView
+                    android:id="@+id/class_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"></ListView>
+            </GridLayout>
         </GridLayout>
     </ScrollView>
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/bmb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#273259">
+
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/bmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Copyright © StudyCastle 2019.\n All rights reserved."
+            />
+    </LinearLayout>
 </LinearLayout>
