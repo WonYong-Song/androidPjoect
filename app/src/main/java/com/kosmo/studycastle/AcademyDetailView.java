@@ -371,7 +371,7 @@ public class AcademyDetailView extends AppCompatActivity  {
                 //학원정보 가져오기
                 JSONArray result1 = jsonObject.getJSONArray("학원정보");
                 //학원 정보는 하나뿐이기 때문에 0번 인덱스로 가져온다.
-                JSONObject object1 = result1.getJSONObject(0);
+                final JSONObject object1 = result1.getJSONObject(0);
                 acaIntroPhoto = object1.getString("acaIntroPhoto");
                 acaIntroPhotoUU= object1.getString("acaIntroPhotoUU");
                 category_result = object1.getString("category");
@@ -416,8 +416,15 @@ public class AcademyDetailView extends AppCompatActivity  {
                             jsobObject.getString()으로 파일의 이름을 가져와 같이 붙여서
                             new URL()의 괄호 안에 넣어 가져온다.
                          */
-                            String url_str = "http://blogfiles.naver.net/20141219_45/weppy22_1418971309581t1gPa_JPEG/%B9%CC%C5%B0%B8%B6%BF%EC%BD%BA5.jpg";
-                            URL url = new URL(url_str);
+                            String image="";
+                            if(object1.getString("acaIntroPhotoUU").equals("null")){
+                                image = "이미지없음.png";
+                            }
+                            else{
+                                image = object1.getString("acaIntroPhotoUU");
+                            }
+                            String url_str = getString(R.string.http)+"/resources/acaUpload/";
+                            URL url = new URL(url_str+image);
 
                             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                             conn.setDoInput(true);
@@ -448,7 +455,7 @@ public class AcademyDetailView extends AppCompatActivity  {
                 //강사정보 출력
                 JSONArray result2 = jsonObject.getJSONArray("강사정보");
                 for(int i=0; i<result2.length() ; i++){
-                    JSONObject object2 = result2.getJSONObject(i);
+                    final JSONObject object2 = result2.getJSONObject(i);
                     teaImage.add(object2.getString("teaImage"));
                     teaImageUU.add(object2.getString("teaImageUU"));
                     teaName.add(object2.getString("teaName"));
@@ -465,8 +472,15 @@ public class AcademyDetailView extends AppCompatActivity  {
                                     jsobObject.getString()으로 파일의 이름을 가져와 같이 붙여서
                                     new URL()의 괄호 안에 넣어 가져온다.
                                  */
-                                String url_str = "https://previews.123rf.com/images/tigatelu/tigatelu1404/tigatelu140400198/27656695-%EA%B5%90%EC%88%98%EC%9D%98-%EB%A7%8C%ED%99%94-%EA%B5%90%EC%9C%A1.jpg";
-                                URL url = new URL(url_str);
+                                String image="";
+                                if(object2.getString("teaImageUU").equals("null")){
+                                    image = "이미지없음.png";
+                                }
+                                else{
+                                    image = object2.getString("teaImageUU");
+                                }
+                                String url_str = getString(R.string.http)+"/resources/acaUpload/";
+                                URL url = new URL(url_str+image);
 
                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                                 conn.setDoInput(true);
