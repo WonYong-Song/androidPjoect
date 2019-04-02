@@ -259,7 +259,7 @@ public class AcademyList extends AppCompatActivity {
 
                 sBuffer.setLength(0);//sBuffer초기화
                 for(int i=0 ; i<jsonArray.length() ; i++){
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                     final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                     idx.add(jsonObject.getString("idx"));
                     aca_name.add(jsonObject.getString("acaName"));
@@ -288,8 +288,15 @@ public class AcademyList extends AppCompatActivity {
                                     jsobObject.getString()으로 파일의 이름을 가져와 같이 붙여서
                                     new URL()의 괄호 안에 넣어 가져온다.
                                  */
-                                String url_str = "http://blogfiles.naver.net/20141219_45/weppy22_1418971309581t1gPa_JPEG/%B9%CC%C5%B0%B8%B6%BF%EC%BD%BA5.jpg";
-                                URL url = new URL(url_str);
+                                String image="";
+                                if(jsonObject.getString("acaIntroPhotoUU").equals("null")){
+                                    image = "이미지없음.png";
+                                }
+                                else{
+                                    image = jsonObject.getString("acaIntroPhotoUU");
+                                }
+                                String url_str = getString(R.string.http)+"/resources/acaUpload/";
+                                URL url = new URL(url_str+image);
 
                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                                 conn.setDoInput(true);
@@ -297,6 +304,7 @@ public class AcademyList extends AppCompatActivity {
 
                                 InputStream is = conn.getInputStream();
                                 bitmap = BitmapFactory.decodeStream(is);
+                                Log.i("bitmap",bitmap.toString());
                             }
                             catch(Exception e){
                                 e.printStackTrace();
