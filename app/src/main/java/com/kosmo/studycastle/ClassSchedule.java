@@ -242,13 +242,36 @@ public class ClassSchedule extends AppCompatActivity {
                     JSONObject object = array1.getJSONObject(i);
                     if(i==array1.length()-1){
                         montimestr  += object.getString("starttime")+"~"+object.getString("endtime");
-                        monnamestr += object.getString("acaname");
-                        monclassnamestr += object.getString("classname");
+                        if(object.getString("classname").length()>15){
+                            monclassnamestr  += object.getString("classname").substring(0,12)+"...";
+                        }
+                        else{
+                            monclassnamestr  += object.getString("classname");
+                        }
+
+                        if(object.getString("acaname").length()>7){
+                            monnamestr += object.getString("acaname").substring(0,5)+"...";
+                        }
+                        else{
+                            monnamestr  += object.getString("acaname");
+                        }
+
                     }
                     else{
                         montimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        monnamestr += object.getString("acaname")+"\n";
-                        monclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            monnamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            monnamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            monclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            monclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
@@ -258,13 +281,35 @@ public class ClassSchedule extends AppCompatActivity {
                     JSONObject object = array2.getJSONObject(i);
                     if(i==array2.length()-1){
                         tuetimestr += object.getString("starttime")+"~"+object.getString("endtime");
-                        tuenamestr += object.getString("acaname");
-                        tueclassnamestr += object.getString("classname");
+
+                        if(object.getString("acaname").length()>7){
+                            tuenamestr += object.getString("acaname").substring(0,5)+"...";
+                        }
+                        else{
+                            tuenamestr += object.getString("acaname");
+                        }
+                        if(object.getString("classname").length()>15){
+                            tueclassnamestr  += object.getString("classname").substring(0,12)+"...";
+                        }
+                        else{
+                            tueclassnamestr  += object.getString("classname");
+                        }
                     }
                     else{
                         tuetimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        tuenamestr += object.getString("acaname")+"\n";
-                        tueclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            tuenamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            tuenamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            tueclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            tueclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
@@ -274,13 +319,35 @@ public class ClassSchedule extends AppCompatActivity {
                     JSONObject object = array3.getJSONObject(i);
                     if(i==array3.length()-1){
                         wedtimestr  += object.getString("starttime")+"~"+object.getString("endtime");
-                        wednamestr += object.getString("acaname");
-                        wedclassnamestr += object.getString("classname");
+
+                        if(object.getString("acaname").length()>7){
+                            wednamestr += object.getString("acaname").substring(0,5)+"...";
+                        }
+                        else{
+                            wednamestr += object.getString("acaname");
+                        }
+                        if(object.getString("classname").length()>15){
+                            wedclassnamestr  += object.getString("classname").substring(0,12)+"...";
+                        }
+                        else{
+                            wedclassnamestr  += object.getString("classname");
+                        }
                     }
                     else{
                         wedtimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        wednamestr += object.getString("acaname")+"\n";
-                        wedclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            wednamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            wednamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            wedclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            wedclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
@@ -290,13 +357,34 @@ public class ClassSchedule extends AppCompatActivity {
                     JSONObject object = array4.getJSONObject(i);
                     if(i==array4.length()-1){
                         thutimestr  += object.getString("starttime")+"~"+object.getString("endtime");
-                        thunamestr += object.getString("acaname");
-                        thuclassnamestr += object.getString("classname");
+                        if(object.getString("acaname").length()>7){
+                            thunamestr += object.getString("acaname").substring(0,5)+"...";
+                        }
+                        else{
+                            thunamestr += object.getString("acaname");
+                        }
+                        if(object.getString("classname").length()>15){
+                            thuclassnamestr  += object.getString("classname").substring(0,12)+"...";
+                        }
+                        else{
+                            thuclassnamestr  += object.getString("classname");
+                        }
                     }
                     else{
                         thutimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        thunamestr += object.getString("acaname")+"\n";
-                        thuclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            thunamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            thunamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            thuclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            thuclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
@@ -304,15 +392,34 @@ public class ClassSchedule extends AppCompatActivity {
                 JSONArray array5 = jsonObject.getJSONArray("금요일");
                 for(int i=0 ; i<array5.length() ; i++){
                     JSONObject object = array5.getJSONObject(i);
-                    if(i==array5.length()-1){
-                        fritimestr  += object.getString("starttime")+"~"+object.getString("endtime");
-                        frinamestr += object.getString("acaname");
-                        friclassnamestr += object.getString("classname");
+                    if(i==array5.length()-1) {
+                        fritimestr += object.getString("starttime") + "~" + object.getString("endtime");
+                        if (object.getString("acaname").length() > 7) {
+                            frinamestr += object.getString("acaname").substring(0, 5) + "...";
+                        } else {
+                            frinamestr += object.getString("acaname");
+                        }
+                        if (object.getString("classname").length() > 15) {
+                            friclassnamestr += object.getString("classname").substring(0, 12) + "...";
+                        } else {
+                            friclassnamestr += object.getString("classname");
+                        }
                     }
                     else{
                         fritimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        frinamestr += object.getString("acaname")+"\n";
-                        friclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            frinamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            frinamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            friclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            friclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
@@ -322,13 +429,32 @@ public class ClassSchedule extends AppCompatActivity {
                     JSONObject object = array6.getJSONObject(i);
                     if(i==array6.length()-1){
                         sattimestr  += object.getString("starttime")+"~"+object.getString("endtime");
-                        satnamestr += object.getString("acaname");
-                        satclassnamestr += object.getString("classname");
+                        if (object.getString("acaname").length() > 7) {
+                            satnamestr += object.getString("acaname").substring(0, 5) + "...";
+                        } else {
+                            satnamestr += object.getString("acaname");
+                        }
+                        if (object.getString("classname").length() > 15) {
+                            satclassnamestr += object.getString("classname").substring(0, 12) + "...";
+                        } else {
+                            satclassnamestr += object.getString("classname");
+                        }
                     }
                     else{
                         sattimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        satnamestr += object.getString("acaname")+"\n";
-                        satclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            satnamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            satnamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            satclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            satclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
@@ -338,17 +464,35 @@ public class ClassSchedule extends AppCompatActivity {
                     JSONObject object = array7.getJSONObject(i);
                     if(i==array7.length()-1){
                         suntimestr  += object.getString("starttime")+"~"+object.getString("endtime");
-                        sunnamestr += object.getString("acaname");
-                        sunclassnamestr += object.getString("classname");
+                        if (object.getString("acaname").length() > 7) {
+                            sunnamestr += object.getString("acaname").substring(0, 5) + "...";
+                        } else {
+                            sunnamestr += object.getString("acaname");
+                        }
+                        if (object.getString("classname").length() > 15) {
+                            sunclassnamestr += object.getString("classname").substring(0, 12) + "...";
+                        } else {
+                            sunclassnamestr += object.getString("classname");
+                        }
                     }
                     else{
                         suntimestr  += object.getString("starttime")+"~"+object.getString("endtime")+"\n";
-                        sunnamestr += object.getString("acaname")+"\n";
-                        sunclassnamestr += object.getString("classname")+"\n";
+                        if(object.getString("acaname").length()>7){
+                            sunnamestr += object.getString("acaname").substring(0,5)+"..."+"\n";
+                        }
+                        else{
+                            sunnamestr += object.getString("acaname")+"\n";
+                        }
+
+                        if(object.getString("classname").length()>15){
+                            sunclassnamestr  += object.getString("classname").substring(0,12)+"..."+"\n";
+                        }
+                        else{
+                            sunclassnamestr  += object.getString("classname")+"\n";
+                        }
                     }
 
                 }
-
             }
             catch (Exception e){
                 e.printStackTrace();
